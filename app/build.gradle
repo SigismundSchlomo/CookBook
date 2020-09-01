@@ -42,6 +42,9 @@ dependencies {
     api "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger:$dagger_version"
 
+    //Timber
+    implementation "com.jakewharton.timber:timber:4.7.1"
+
     //Test dependencies
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
