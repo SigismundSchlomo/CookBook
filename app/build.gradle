@@ -17,14 +17,19 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
 
         debug {
-            buildConfigField "String", "BASE_URL", "https://cookbookrest.herokuapp.com/"
+            buildConfigField "String", "BASE_URL", "\"https://cookbookrest.herokuapp.com\""
         }
 
         release {
-            buildConfigField "String", "BASE_URL", "https://cookbookrest.herokuapp.com/"
+            buildConfigField "String", "BASE_URL", "\"https://cookbookrest.herokuapp.com\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -52,8 +57,11 @@ dependencies {
     //Timber
     implementation "com.jakewharton.timber:timber:4.7.1"
 
-    //Retrofit
+    //Network dependencies
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-moshi:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.8.1'
+    implementation 'com.squareup.moshi:moshi-kotlin:1.9.3'
 
     //Room
     implementation "androidx.room:room-runtime:$room_version"
