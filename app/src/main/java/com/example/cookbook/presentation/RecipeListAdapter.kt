@@ -8,12 +8,11 @@ import com.example.cookbook.R
 import com.example.cookbook.domain.Recipe
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_view_recipe.view.*
-import javax.inject.Inject
 
-class RecipeListAdapter @Inject constructor() :
+class RecipeListAdapter :
     RecyclerView.Adapter<RecipeListAdapter.ViewHolder>() {
 
-    var items = mutableListOf<Recipe>()
+    var items = listOf<Recipe>()
         set(value) {
             field = value
             notifyDataSetChanged()

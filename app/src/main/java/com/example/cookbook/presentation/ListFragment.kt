@@ -7,19 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookbook.App
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
-import timber.log.Timber
+import kotlinx.android.synthetic.main.fragment_recipes_list.*
 import javax.inject.Inject
 
 class ListFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-
-
     lateinit var viewModel: RecipeListViewModel
+
+    private val recipeAdapter = RecipeListAdapter()
 
     companion object {
         fun newInstance(): ListFragment {
@@ -43,7 +45,15 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = injectViewModel(viewModelFactory)
-        Timber.d("ListFragment created")
+
+        recipeListView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = recipeAdapter
+        }
+
+        viewModel.recipesLiveData.observe(viewLifecycleOwner) {
+            recipeAdapter.items = it
+        }
 
     }
 }
