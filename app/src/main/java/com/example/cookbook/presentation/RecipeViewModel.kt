@@ -9,11 +9,12 @@ import com.example.cookbook.domain.RecipesRepository
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class RecipeListViewModel @Inject constructor(private val repo: RecipesRepository) : ViewModel() {
+class RecipeViewModel @Inject constructor(private val repo: RecipesRepository) : ViewModel() {
 
     private val _recipesLiveData = MutableLiveData<List<Recipe>>()
     val recipesLiveData: LiveData<List<Recipe>>
         get() = _recipesLiveData
+
 
     init {
         viewModelScope.launch {

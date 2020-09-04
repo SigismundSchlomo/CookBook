@@ -19,9 +19,10 @@ class ListFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    lateinit var viewModel: RecipeListViewModel
+    lateinit var viewModel: RecipeViewModel
 
-    private val recipeAdapter = RecipeListAdapter()
+    private val recipeAdapter =
+        RecipeListAdapter()
 
     companion object {
         fun newInstance(): ListFragment {
