@@ -1,11 +1,13 @@
 package com.example.cookbook.data
 
+import com.example.cookbook.data.db.RecipeDao
 import com.example.cookbook.domain.Recipe
 import com.example.cookbook.domain.RecipesRepository
 import javax.inject.Inject
 
 class RecipeRepositoryImpl @Inject constructor(
-    private val networkService: NetworkService
+    private val networkService: NetworkService,
+    private val db: RecipeDao
 ) :
     RecipesRepository {
 
