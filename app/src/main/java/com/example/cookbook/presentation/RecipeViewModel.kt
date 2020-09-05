@@ -28,4 +28,10 @@ class RecipeViewModel @Inject constructor(private val repo: RecipesRepository) :
         }
     }
 
+    fun createRecipe(header: String, body: String) {
+        viewModelScope.launch {
+            repo.createRecipe(header, body)
+        }
+    }
+
 }

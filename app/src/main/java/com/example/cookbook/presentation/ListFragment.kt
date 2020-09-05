@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,6 +34,7 @@ class ListFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (requireActivity().application as App).appComponent.inject(this)
+        viewModel = injectViewModel(viewModelFactory)
     }
 
     override fun onCreateView(
@@ -45,7 +47,8 @@ class ListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = injectViewModel(viewModelFactory)
+
+        viewModel.refreshRecipes()
 
         recipeListView.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -54,6 +57,13 @@ class ListFragment : Fragment() {
 
         viewModel.recipesLiveData.observe(viewLifecycleOwner) {
             recipeAdapter.items = it
+        }
+
+        addRecipeButton.setOnClickListener {
+            activity?.supportFragmentManager?.commit {
+                addToBackStack(null)
+                replace(R.id.main_fragment_container, CreateFragment.newInstance())
+            }
         }
 
     }
