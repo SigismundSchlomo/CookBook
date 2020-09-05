@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookbook.App
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
+import com.example.cookbook.utils.ConnectivityManager
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_recipes_list.*
 import javax.inject.Inject
@@ -22,6 +23,9 @@ class ListFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     lateinit var viewModel: RecipeViewModel
+
+    @Inject
+    lateinit var connectivityManager: ConnectivityManager
 
     private val recipeAdapter =
         RecipeListAdapter()
@@ -49,7 +53,7 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.refreshRecipes()
+        tryToRefreshData()
 
         recipeListView.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -81,4 +85,11 @@ class ListFragment : Fragment() {
         Snackbar.make(requireView(), stringResource, Snackbar.LENGTH_SHORT).show()
     }
 
+    private fun tryToRefreshData() {
+        if (connectivityManager.isConnected()) {
+            viewModel.refreshRecipes()
+        } else {
+            connectivityManager.showAlertDialog(requireContext(), this::tryToRefreshData)
+        }
+    }
 }
