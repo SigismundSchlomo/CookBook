@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookbook.App
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_recipes_list.*
 import javax.inject.Inject
 
@@ -59,6 +60,14 @@ class ListFragment : Fragment() {
             recipeAdapter.items = it
         }
 
+        viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+            val messageResource = when (errorMessage) {
+                RecipeViewModel.ErrorMessage.SERVICE_UNAVAILABLE -> R.string.service_unavailable
+                RecipeViewModel.ErrorMessage.UNKNOWN_ERROR -> R.string.unknown_error
+            }
+            showErrorMessage(messageResource)
+        }
+
         addRecipeButton.setOnClickListener {
             activity?.supportFragmentManager?.commit {
                 addToBackStack(null)
@@ -67,4 +76,9 @@ class ListFragment : Fragment() {
         }
 
     }
+
+    private fun showErrorMessage(stringResource: Int) {
+        Snackbar.make(requireView(), stringResource, Snackbar.LENGTH_SHORT).show()
+    }
+
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.cookbook.domain.Recipe
 import com.example.cookbook.domain.RecipesRepository
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 class RecipeViewModel @Inject constructor(private val repo: RecipesRepository) : ViewModel() {
@@ -15,23 +16,37 @@ class RecipeViewModel @Inject constructor(private val repo: RecipesRepository) :
     val recipesLiveData: LiveData<List<Recipe>>
         get() = _recipesLiveData
 
-
-    init {
-        viewModelScope.launch {
-            _recipesLiveData.value = repo.getRecipes()
-        }
-    }
+    private val _errorMessage = MutableLiveData<ErrorMessage>()
+    val errorMessage: LiveData<ErrorMessage>
+        get() = _errorMessage
 
     fun refreshRecipes() {
         viewModelScope.launch {
-            _recipesLiveData.value = repo.getRecipes()
+            try {
+                _recipesLiveData.value = repo.getRecipes()
+            } catch (t: Throwable) {
+                Timber.d(t)
+                _errorMessage.value = when (t.message) {
+                    "HTTP 503 Service Unavailable" -> ErrorMessage.SERVICE_UNAVAILABLE
+                    else -> ErrorMessage.UNKNOWN_ERROR
+                }
+            }
         }
     }
 
     fun createRecipe(header: String, body: String) {
         viewModelScope.launch {
-            repo.createRecipe(header, body)
+            try {
+                repo.createRecipe(header, body)
+            } catch (t: Throwable) {
+                Timber.d(t)
+            }
         }
+    }
+
+    enum class ErrorMessage {
+        SERVICE_UNAVAILABLE,
+        UNKNOWN_ERROR
     }
 
 }
