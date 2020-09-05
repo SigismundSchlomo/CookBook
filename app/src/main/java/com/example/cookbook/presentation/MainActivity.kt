@@ -12,9 +12,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Timber.d("Main activity onCreate")
+
         supportFragmentManager.commit {
-            addToBackStack(null)
             replace(R.id.main_fragment_container, ListFragment.newInstance())
         }
+
     }
 }

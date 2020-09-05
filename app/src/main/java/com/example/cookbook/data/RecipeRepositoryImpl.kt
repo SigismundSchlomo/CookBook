@@ -13,8 +13,9 @@ class RecipeRepositoryImpl @Inject constructor(
         return networkService.getRecipes()
     }
 
-    override suspend fun createRecipe() {
-        TODO("Not yet implemented")
+    override suspend fun createRecipe(header: String, body: String) {
+        val recipe = Recipe(header = header, body = body)
+        networkService.postRecipe(recipe)
     }
 
     override suspend fun enableCaching(): Boolean {

@@ -6,28 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookbook.App
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
-import kotlinx.android.synthetic.main.fragment_recipes_list.*
+import kotlinx.android.synthetic.main.fragment_create_recipe.*
 import javax.inject.Inject
 
-class ListFragment : Fragment() {
+class CreateFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     lateinit var viewModel: RecipeViewModel
 
-    private val recipeAdapter =
-        RecipeListAdapter()
-
     companion object {
-        fun newInstance(): ListFragment {
-            return ListFragment()
+        fun newInstance(): CreateFragment {
+            return CreateFragment()
         }
     }
 
@@ -42,29 +36,20 @@ class ListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_recipes_list, container, false)
+        return inflater.inflate(R.layout.fragment_create_recipe, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.refreshRecipes()
-
-        recipeListView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = recipeAdapter
+        createButton.setOnClickListener {
+            createRecipe()
         }
-
-        viewModel.recipesLiveData.observe(viewLifecycleOwner) {
-            recipeAdapter.items = it
-        }
-
-        addRecipeButton.setOnClickListener {
-            activity?.supportFragmentManager?.commit {
-                addToBackStack(null)
-                replace(R.id.main_fragment_container, CreateFragment.newInstance())
-            }
-        }
-
     }
+
+    private fun createRecipe() {
+        val header = headerEditText.text.toString()
+        val body = bodyEditText.text.toString()
+        viewModel.createRecipe(header, body)
+    }
+
 }
