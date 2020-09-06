@@ -53,7 +53,7 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tryToRefreshData()
+        viewModel.refreshRecipes()
 
         recipeListView.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -68,6 +68,7 @@ class ListFragment : Fragment() {
             val messageResource = when (errorMessage) {
                 RecipeViewModel.ErrorMessage.SERVICE_UNAVAILABLE -> R.string.service_unavailable
                 RecipeViewModel.ErrorMessage.UNKNOWN_ERROR -> R.string.unknown_error
+                RecipeViewModel.ErrorMessage.DATA_FROM_DATABASE -> R.string.data_from_database
             }
             showErrorMessage(messageResource)
         }
@@ -85,11 +86,4 @@ class ListFragment : Fragment() {
         Snackbar.make(requireView(), stringResource, Snackbar.LENGTH_SHORT).show()
     }
 
-    private fun tryToRefreshData() {
-        if (connectivityManager.isConnected()) {
-            viewModel.refreshRecipes()
-        } else {
-            connectivityManager.showAlertDialog(requireContext(), this::tryToRefreshData)
-        }
-    }
 }

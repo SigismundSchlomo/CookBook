@@ -10,15 +10,15 @@ import com.example.cookbook.domain.Recipe
 interface RecipeDao {
 
     @Query("SELECT * FROM Recipe")
-    fun getAll(): List<Recipe>
+    suspend fun getAll(): List<Recipe>
 
     @Insert
-    fun insertAll(recipes: List<Recipe>)
+    suspend fun insertAll(recipes: List<Recipe>)
 
     @Delete
-    fun delete(recipe: Recipe)
+    suspend fun delete(recipe: Recipe)
 
     @Query("DELETE FROM Recipe")
-    fun nukeTable()
+    suspend fun nukeTable()
 
 }
