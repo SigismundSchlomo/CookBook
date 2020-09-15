@@ -1,7 +1,7 @@
 package com.example.cookbook.di
 
 import com.example.cookbook.BuildConfig
-import com.example.cookbook.data.NetworkService
+import com.example.cookbook.data.AuthNetworkService
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
@@ -12,7 +12,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
-class NetworkModule {
+class AuthNetworkModule {
 
     @Singleton
     @Provides
@@ -26,8 +26,8 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideService(retrofit: Retrofit): NetworkService {
-        return retrofit.create(NetworkService::class.java)
+    fun provideService(retrofit: Retrofit): AuthNetworkService {
+        return retrofit.create(AuthNetworkService::class.java)
     }
 
     @Singleton
@@ -46,6 +46,7 @@ class NetworkModule {
     @Provides
     fun provideInterceptors(): ArrayList<Interceptor> {
         val interceptors = arrayListOf<Interceptor>()
+
         val loggingInterceptor = HttpLoggingInterceptor().apply {
             level = if (BuildConfig.DEBUG) {
                 HttpLoggingInterceptor.Level.BASIC
@@ -54,6 +55,7 @@ class NetworkModule {
             }
         }
         interceptors.add(loggingInterceptor)
+
         return interceptors
     }
 

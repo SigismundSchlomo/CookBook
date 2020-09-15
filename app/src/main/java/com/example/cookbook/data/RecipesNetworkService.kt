@@ -5,7 +5,7 @@ import retrofit2.http.*
 
 private const val RECIPES = "/recipes"
 
-interface NetworkService {
+interface RecipesNetworkService {
 
     @GET("/recipes")
     suspend fun getRecipes(): List<Recipe>

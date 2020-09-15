@@ -8,19 +8,19 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class RecipeRepositoryImpl @Inject constructor(
-    private val networkService: NetworkService,
+    private val recipesNetworkService: RecipesNetworkService,
     private val db: RecipeDao
 ) : RecipesRepository {
 
     override suspend fun getRecipes(): List<Recipe> {
-        val recipes = networkService.getRecipes()
+        val recipes = recipesNetworkService.getRecipes()
         withContext(Dispatchers.IO) { db.insertAll(recipes) }
-        return networkService.getRecipes()
+        return recipesNetworkService.getRecipes()
     }
 
     override suspend fun createRecipe(header: String, body: String) {
         val recipe = Recipe(header = header, body = body)
-        networkService.postRecipe(recipe)
+        recipesNetworkService.postRecipe(recipe)
     }
 
     override suspend fun getFromDatabase(): List<Recipe> {

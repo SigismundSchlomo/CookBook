@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.cookbook.App
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
 import kotlinx.android.synthetic.main.fragment_create_recipe.*
@@ -27,7 +26,7 @@ class CreateFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireActivity().application as App).appComponent.inject(this)
+        (requireActivity() as MainActivity).recipesComponent.inject(this)
         viewModel = injectViewModel(viewModelFactory)
     }
 

@@ -1,8 +1,9 @@
 package com.example.cookbook.di
 
 import android.content.Context
-import com.example.cookbook.presentation.CreateFragment
-import com.example.cookbook.presentation.ListFragment
+import com.example.cookbook.SplashActivity
+import com.example.cookbook.presentation.authflow.CreateAccountFragment
+import com.example.cookbook.presentation.authflow.LoginFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -10,10 +11,9 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
-        NetworkModule::class,
-        MainModule::class,
+        AuthNetworkModule::class,
         ConnectivityModule::class,
-        DatabaseModule::class]
+        AuthModule::class]
 )
 interface AppComponent {
 
@@ -22,7 +22,8 @@ interface AppComponent {
         fun create(@BindsInstance context: Context): AppComponent
     }
 
-    fun inject(fragment: ListFragment)
-    fun inject(fragment: CreateFragment)
+    fun inject(fragment: LoginFragment)
+    fun inject(fragment: CreateAccountFragment)
+    fun inject(activity: SplashActivity)
 
 }
