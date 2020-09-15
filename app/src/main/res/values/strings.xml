@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">CookBook</string>
+
+    <string name="add_recipe_button_description">Add recipe button</string>
+
+    <!--  Error messages  -->
+    <string name="service_unavailable" translatable="true">Server currently unavailable</string>
+    <string name="unknown_error" translatable="true">Oop, something gone wrong!</string>
+    <string name="data_from_database" translatable="true">No internet connection. Cached data is loaded</string>
+
 </resources>
