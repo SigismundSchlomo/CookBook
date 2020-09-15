@@ -11,7 +11,9 @@ import timber.log.Timber
 class MainActivity : AppCompatActivity() {
 
     val recipesComponent: RecipesComponent by lazy {
-        DaggerRecipesComponent.factory().create(this)
+        val token = intent.extras?.get("token") as String
+
+        DaggerRecipesComponent.factory().create(this, token)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

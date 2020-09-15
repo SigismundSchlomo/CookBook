@@ -2,6 +2,7 @@ package com.example.cookbook.di
 
 import com.example.cookbook.BuildConfig
 import com.example.cookbook.data.RecipesNetworkService
+import com.example.cookbook.data.TokenInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
@@ -43,8 +44,10 @@ class RecipeNetworkModule {
 
     @LoggedUserScope
     @Provides
-    fun provideInterceptors(): ArrayList<Interceptor> {
+    fun provideInterceptors(tokenInterceptor: TokenInterceptor): ArrayList<Interceptor> {
         val interceptors = arrayListOf<Interceptor>()
+        interceptors.add(tokenInterceptor)
+
         val loggingInterceptor = HttpLoggingInterceptor().apply {
             level = if (BuildConfig.DEBUG) {
                 HttpLoggingInterceptor.Level.BASIC
@@ -52,6 +55,7 @@ class RecipeNetworkModule {
                 HttpLoggingInterceptor.Level.NONE
             }
         }
+
         interceptors.add(loggingInterceptor)
         return interceptors
     }

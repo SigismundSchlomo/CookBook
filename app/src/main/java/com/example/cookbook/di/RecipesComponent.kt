@@ -20,7 +20,10 @@ interface RecipesComponent {
 
     @Component.Factory
     interface Factory {
-        fun create(@BindsInstance context: Context): RecipesComponent
+        fun create(
+            @BindsInstance context: Context,
+            @BindsInstance token: String
+        ): RecipesComponent
     }
 
     fun inject(fragment: ListFragment)

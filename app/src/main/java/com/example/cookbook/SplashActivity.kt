@@ -27,6 +27,7 @@ class SplashActivity : AppCompatActivity() {
         Timber.d("Splash activity onStart")
         if (auth.isLoggedIn()) {
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("token", auth.getToken())
             startActivity(intent)
         } else {
             val intent = Intent(this, AuthActivity::class.java)
