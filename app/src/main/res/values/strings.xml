@@ -16,4 +16,9 @@
     <string name="create_label">Create</string>
     <string name="name_label">Your name</string>
 
+
+    <!-- technical needs -->
+    <string name="lorem_ipsum_280">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit voluptate</string>
+
+
 </resources>
