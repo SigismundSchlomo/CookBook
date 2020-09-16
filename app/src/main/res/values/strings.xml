@@ -12,5 +12,8 @@
     <string name="login_label">Login</string>
     <string name="register_label">Register</string>
     <string name="greeting_label">Welcome!</string>
+    <string name="create_new_account_label">Create new account</string>
+    <string name="create_label">Create</string>
+    <string name="name_label">Your name</string>
 
 </resources>

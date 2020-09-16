@@ -12,7 +12,6 @@ import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
 import com.example.cookbook.utils.ConnectivityManager
 import kotlinx.android.synthetic.main.fragment_create_account.*
-import kotlinx.android.synthetic.main.fragment_login.*
 
 import javax.inject.Inject
 
