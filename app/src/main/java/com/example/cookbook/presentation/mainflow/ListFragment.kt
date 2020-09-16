@@ -1,4 +1,4 @@
-package com.example.cookbook.presentation
+package com.example.cookbook.presentation.mainflow
 
 import android.content.Context
 import android.os.Bundle
@@ -10,7 +10,6 @@ import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cookbook.App
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
 import com.example.cookbook.utils.ConnectivityManager
@@ -38,7 +37,7 @@ class ListFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireActivity().application as App).appComponent.inject(this)
+        (requireActivity() as MainActivity).mainFlowComponent.inject(this)
         viewModel = injectViewModel(viewModelFactory)
     }
 
@@ -76,7 +75,7 @@ class ListFragment : Fragment() {
         addRecipeButton.setOnClickListener {
             activity?.supportFragmentManager?.commit {
                 addToBackStack(null)
-                replace(R.id.main_fragment_container, CreateFragment.newInstance())
+                replace(R.id.main_fragment_container, CreateRecipeFragment.newInstance())
             }
         }
 

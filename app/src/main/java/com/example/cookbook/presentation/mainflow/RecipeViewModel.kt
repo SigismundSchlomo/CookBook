@@ -1,4 +1,4 @@
-package com.example.cookbook.presentation
+package com.example.cookbook.presentation.mainflow
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -59,7 +59,8 @@ class RecipeViewModel @Inject constructor(
     private fun getFromDatabase() {
         viewModelScope.launch {
             _recipesLiveData.value = repo.getFromDatabase()
-            _errorMessage.value = ErrorMessage.DATA_FROM_DATABASE
+            _errorMessage.value =
+                ErrorMessage.DATA_FROM_DATABASE
         }
     }
 

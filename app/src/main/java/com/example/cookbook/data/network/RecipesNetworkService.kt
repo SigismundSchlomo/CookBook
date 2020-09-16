@@ -1,11 +1,11 @@
-package com.example.cookbook.data
+package com.example.cookbook.data.network
 
 import com.example.cookbook.domain.Recipe
 import retrofit2.http.*
 
 private const val RECIPES = "/recipes"
 
-interface NetworkService {
+interface RecipesNetworkService {
 
     @GET("/recipes")
     suspend fun getRecipes(): List<Recipe>

@@ -1,4 +1,4 @@
-package com.example.cookbook.presentation
+package com.example.cookbook.presentation.authflow
 
 import android.content.Context
 import android.os.Bundle
@@ -10,18 +10,24 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.cookbook.App
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
-import kotlinx.android.synthetic.main.fragment_create_recipe.*
+import com.example.cookbook.utils.ConnectivityManager
+import kotlinx.android.synthetic.main.fragment_create_account.*
+import kotlinx.android.synthetic.main.fragment_login.*
+
 import javax.inject.Inject
 
-class CreateFragment : Fragment() {
+class CreateAccountFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    lateinit var viewModel: RecipeViewModel
+    lateinit var viewModel: AuthViewModel
+
+    @Inject
+    lateinit var connectivityManager: ConnectivityManager
 
     companion object {
-        fun newInstance(): CreateFragment {
-            return CreateFragment()
+        fun newInstance(): CreateAccountFragment {
+            return CreateAccountFragment()
         }
     }
 
@@ -36,20 +42,18 @@ class CreateFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_create_recipe, container, false)
+        return inflater.inflate(R.layout.fragment_create_account, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         createButton.setOnClickListener {
-            createRecipe()
+            val email = emailEditText.text.toString()
+            val password = passwordEditText.text.toString()
+            val displayName = createNameEditText.text.toString()
+            viewModel.createAccount(email, password, displayName)
         }
-    }
 
-    private fun createRecipe() {
-        val header = headerEditText.text.toString()
-        val body = bodyEditText.text.toString()
-        viewModel.createRecipe(header, body)
     }
-
 }
