@@ -1,11 +1,13 @@
-package com.example.cookbook
+package com.example.cookbook.presentation
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.cookbook.auth.Auth
-import com.example.cookbook.presentation.MainActivity
+import com.example.cookbook.App
+import com.example.cookbook.R
 import com.example.cookbook.presentation.authflow.AuthActivity
+import com.example.cookbook.presentation.mainflow.MainActivity
+import com.example.cookbook.utils.Auth
 import timber.log.Timber
 import javax.inject.Inject
 

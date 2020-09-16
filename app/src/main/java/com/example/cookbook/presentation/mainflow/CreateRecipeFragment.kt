@@ -1,4 +1,4 @@
-package com.example.cookbook.presentation
+package com.example.cookbook.presentation.mainflow
 
 import android.content.Context
 import android.os.Bundle
@@ -12,21 +12,21 @@ import com.example.cookbook.di.injectViewModel
 import kotlinx.android.synthetic.main.fragment_create_recipe.*
 import javax.inject.Inject
 
-class CreateFragment : Fragment() {
+class CreateRecipeFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     lateinit var viewModel: RecipeViewModel
 
     companion object {
-        fun newInstance(): CreateFragment {
-            return CreateFragment()
+        fun newInstance(): CreateRecipeFragment {
+            return CreateRecipeFragment()
         }
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireActivity() as MainActivity).recipesComponent.inject(this)
+        (requireActivity() as MainActivity).mainFlowComponent.inject(this)
         viewModel = injectViewModel(viewModelFactory)
     }
 

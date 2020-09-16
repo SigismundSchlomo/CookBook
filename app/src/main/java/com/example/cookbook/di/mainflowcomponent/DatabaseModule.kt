@@ -1,4 +1,4 @@
-package com.example.cookbook.di
+package com.example.cookbook.di.mainflowcomponent
 
 import android.content.Context
 import androidx.room.Room

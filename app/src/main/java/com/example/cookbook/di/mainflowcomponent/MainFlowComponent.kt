@@ -1,8 +1,9 @@
-package com.example.cookbook.di
+package com.example.cookbook.di.mainflowcomponent
 
 import android.content.Context
-import com.example.cookbook.presentation.CreateFragment
-import com.example.cookbook.presentation.ListFragment
+import com.example.cookbook.di.ConnectivityModule
+import com.example.cookbook.presentation.mainflow.CreateRecipeFragment
+import com.example.cookbook.presentation.mainflow.ListFragment
 import dagger.BindsInstance
 import dagger.Component
 
@@ -16,17 +17,17 @@ import dagger.Component
         RecipesModule::class
     ]
 )
-interface RecipesComponent {
+interface MainFlowComponent {
 
     @Component.Factory
     interface Factory {
         fun create(
             @BindsInstance context: Context,
             @BindsInstance token: String
-        ): RecipesComponent
+        ): MainFlowComponent
     }
 
     fun inject(fragment: ListFragment)
-    fun inject(fragment: CreateFragment)
+    fun inject(fragment: CreateRecipeFragment)
 
 }

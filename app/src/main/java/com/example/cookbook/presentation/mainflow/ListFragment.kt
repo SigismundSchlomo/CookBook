@@ -1,4 +1,4 @@
-package com.example.cookbook.presentation
+package com.example.cookbook.presentation.mainflow
 
 import android.content.Context
 import android.os.Bundle
@@ -37,7 +37,7 @@ class ListFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireActivity() as MainActivity).recipesComponent.inject(this)
+        (requireActivity() as MainActivity).mainFlowComponent.inject(this)
         viewModel = injectViewModel(viewModelFactory)
     }
 
@@ -75,7 +75,7 @@ class ListFragment : Fragment() {
         addRecipeButton.setOnClickListener {
             activity?.supportFragmentManager?.commit {
                 addToBackStack(null)
-                replace(R.id.main_fragment_container, CreateFragment.newInstance())
+                replace(R.id.main_fragment_container, CreateRecipeFragment.newInstance())
             }
         }
 

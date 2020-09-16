@@ -1,4 +1,4 @@
-package com.example.cookbook.di
+package com.example.cookbook.di.mainflowcomponent
 
 import com.example.cookbook.data.RecipeRepositoryImpl
 import com.example.cookbook.domain.RecipesRepository

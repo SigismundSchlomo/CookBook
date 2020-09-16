@@ -1,6 +1,6 @@
-package com.example.cookbook.auth
+package com.example.cookbook.utils
 
-import com.example.cookbook.data.AuthNetworkService
+import com.example.cookbook.data.network.AuthNetworkService
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 import javax.inject.Singleton

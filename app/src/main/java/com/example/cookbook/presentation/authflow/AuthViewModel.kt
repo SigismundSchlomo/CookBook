@@ -1,7 +1,7 @@
 package com.example.cookbook.presentation.authflow
 
 import androidx.lifecycle.ViewModel
-import com.example.cookbook.auth.Auth
+import com.example.cookbook.utils.Auth
 import javax.inject.Inject
 
 

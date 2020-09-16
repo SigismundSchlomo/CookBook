@@ -1,6 +1,7 @@
 package com.example.cookbook.data
 
 import com.example.cookbook.data.db.RecipeDao
+import com.example.cookbook.data.network.RecipesNetworkService
 import com.example.cookbook.domain.Recipe
 import com.example.cookbook.domain.RecipesRepository
 import kotlinx.coroutines.Dispatchers

@@ -1,19 +1,19 @@
-package com.example.cookbook.presentation
+package com.example.cookbook.presentation.mainflow
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.example.cookbook.R
-import com.example.cookbook.di.DaggerRecipesComponent
-import com.example.cookbook.di.RecipesComponent
+import com.example.cookbook.di.mainflowcomponent.DaggerMainFlowComponent
+import com.example.cookbook.di.mainflowcomponent.MainFlowComponent
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
-    val recipesComponent: RecipesComponent by lazy {
+    val mainFlowComponent: MainFlowComponent by lazy {
         val token = intent.extras?.get("token") as String
 
-        DaggerRecipesComponent.factory().create(this, token)
+        DaggerMainFlowComponent.factory().create(this, token)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +22,10 @@ class MainActivity : AppCompatActivity() {
         Timber.d("Main activity onCreate")
 
         supportFragmentManager.commit {
-            replace(R.id.main_fragment_container, ListFragment.newInstance())
+            replace(
+                R.id.main_fragment_container,
+                ListFragment.newInstance()
+            )
         }
 
     }

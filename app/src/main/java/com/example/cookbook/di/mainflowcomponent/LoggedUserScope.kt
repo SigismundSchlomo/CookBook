@@ -1,4 +1,4 @@
-package com.example.cookbook.di
+package com.example.cookbook.di.mainflowcomponent
 
 import javax.inject.Scope
 

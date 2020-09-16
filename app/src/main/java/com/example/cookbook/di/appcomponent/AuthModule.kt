@@ -1,7 +1,9 @@
-package com.example.cookbook.di
+package com.example.cookbook.di.appcomponent
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.cookbook.di.ViewModelFactory
+import com.example.cookbook.di.ViewModelKey
 import com.example.cookbook.presentation.authflow.AuthViewModel
 import dagger.Binds
 import dagger.Module

@@ -1,7 +1,8 @@
-package com.example.cookbook.di
+package com.example.cookbook.di.appcomponent
 
 import android.content.Context
-import com.example.cookbook.SplashActivity
+import com.example.cookbook.di.ConnectivityModule
+import com.example.cookbook.presentation.SplashActivity
 import com.example.cookbook.presentation.authflow.CreateAccountFragment
 import com.example.cookbook.presentation.authflow.LoginFragment
 import dagger.BindsInstance

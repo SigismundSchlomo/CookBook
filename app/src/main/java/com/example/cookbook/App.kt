@@ -1,8 +1,8 @@
 package com.example.cookbook
 
 import android.app.Application
-import com.example.cookbook.di.AppComponent
-import com.example.cookbook.di.DaggerAppComponent
+import com.example.cookbook.di.appcomponent.AppComponent
+import com.example.cookbook.di.appcomponent.DaggerAppComponent
 import timber.log.Timber
 
 open class App() : Application() {

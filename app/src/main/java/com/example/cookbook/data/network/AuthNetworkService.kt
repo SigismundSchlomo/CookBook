@@ -1,4 +1,4 @@
-package com.example.cookbook.data
+package com.example.cookbook.data.network
 
 import retrofit2.http.POST
 import retrofit2.http.Query

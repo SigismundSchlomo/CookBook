@@ -1,4 +1,4 @@
-package com.example.cookbook.data
+package com.example.cookbook.data.network
 
 import okhttp3.Interceptor
 import okhttp3.Response
