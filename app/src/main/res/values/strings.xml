@@ -7,5 +7,10 @@
     <string name="service_unavailable" translatable="true">Server currently unavailable</string>
     <string name="unknown_error" translatable="true">Oop, something gone wrong!</string>
     <string name="data_from_database" translatable="true">No internet connection. Cached data is loaded</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_label">Login</string>
+    <string name="register_label">Register</string>
+    <string name="greeting_label">Welcome!</string>
 
 </resources>
