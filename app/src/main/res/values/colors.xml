@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#2e7d32</color>
+    <color name="colorPrimaryDark">#005005</color>
+    <color name="colorPrimaryLight">#60ad5e</color>
+    <color name="colorSecondary">#fffbe6</color>
+    <color name="colorSecondaryDark">#ccc8b4</color>
+    <color name="colorSecondaryLight">#ffffff</color>
+    <color name="colorTextDark">#000000</color>
+    <color name="colorTextLight">#ffffff</color>
+    <color name="color_recipe_info_text">#232F34</color>
 </resources>

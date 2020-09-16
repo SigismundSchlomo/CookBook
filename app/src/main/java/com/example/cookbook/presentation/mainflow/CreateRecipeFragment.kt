@@ -40,9 +40,17 @@ class CreateRecipeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        createButton.setOnClickListener {
-            createRecipe()
+
+        topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.done -> {
+                    createRecipe()
+                    true
+                }
+                else -> false
+            }
         }
+
     }
 
     private fun createRecipe() {
