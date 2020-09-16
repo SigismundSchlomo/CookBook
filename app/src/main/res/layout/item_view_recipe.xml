@@ -20,13 +20,14 @@
             android:textSize="21sp"
             tools:text="Header" />
 
-
         <TextView
             android:id="@+id/recipeBody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/color_recipe_info_text"
             android:textSize="15sp"
+            android:ellipsize="end"
+            android:maxLines="5"
             tools:text="@string/lorem_ipsum_280" />
 
     </LinearLayout>
