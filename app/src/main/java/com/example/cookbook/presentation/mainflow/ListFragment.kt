@@ -12,6 +12,7 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
+import com.example.cookbook.presentation.ErrorMessage
 import com.example.cookbook.utils.ConnectivityManager
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_recipes_list.*
@@ -65,9 +66,9 @@ class ListFragment : Fragment() {
 
         viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
             val messageResource = when (errorMessage) {
-                RecipeViewModel.ErrorMessage.SERVICE_UNAVAILABLE -> R.string.service_unavailable
-                RecipeViewModel.ErrorMessage.UNKNOWN_ERROR -> R.string.unknown_error
-                RecipeViewModel.ErrorMessage.DATA_FROM_DATABASE -> R.string.data_from_database
+                ErrorMessage.SERVICE_UNAVAILABLE -> R.string.service_unavailable
+                ErrorMessage.UNKNOWN_ERROR -> R.string.unknown_error
+                ErrorMessage.DATA_FROM_DATABASE -> R.string.data_from_database
             }
             showErrorMessage(messageResource)
         }

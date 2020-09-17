@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cookbook.domain.Recipe
 import com.example.cookbook.domain.RecipesRepository
+import com.example.cookbook.presentation.ErrorMessage
 import com.example.cookbook.utils.ConnectivityManager
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -38,6 +39,7 @@ class RecipeViewModel @Inject constructor(
                 repo.createRecipe(header, body)
             } catch (t: Throwable) {
                 Timber.d(t)
+                _errorMessage.value = ErrorMessage.UNKNOWN_ERROR
             }
         }
     }
@@ -59,15 +61,8 @@ class RecipeViewModel @Inject constructor(
     private fun getFromDatabase() {
         viewModelScope.launch {
             _recipesLiveData.value = repo.getFromDatabase()
-            _errorMessage.value =
-                ErrorMessage.DATA_FROM_DATABASE
+            _errorMessage.value = ErrorMessage.DATA_FROM_DATABASE
         }
-    }
-
-    enum class ErrorMessage {
-        SERVICE_UNAVAILABLE,
-        DATA_FROM_DATABASE,
-        UNKNOWN_ERROR
     }
 
 }

@@ -2,6 +2,7 @@ package com.example.cookbook.di.appcomponent
 
 import android.content.Context
 import com.example.cookbook.di.ConnectivityModule
+import com.example.cookbook.di.UserModule
 import com.example.cookbook.presentation.SplashActivity
 import com.example.cookbook.presentation.authflow.CreateAccountFragment
 import com.example.cookbook.presentation.authflow.LoginFragment
@@ -12,6 +13,8 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
+        UserModule::class,
+        SplashModule::class,
         AuthNetworkModule::class,
         ConnectivityModule::class,
         AuthModule::class]

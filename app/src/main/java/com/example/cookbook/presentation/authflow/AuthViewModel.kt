@@ -1,18 +1,47 @@
 package com.example.cookbook.presentation.authflow
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.cookbook.utils.Auth
+import androidx.lifecycle.viewModelScope
+import com.example.cookbook.domain.User
+import com.example.cookbook.domain.usecases.UseCases
+import com.example.cookbook.presentation.ErrorMessage
+import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 
-class AuthViewModel @Inject constructor(private val auth: Auth) : ViewModel() {
+class AuthViewModel @Inject constructor(private val useCases: UseCases) : ViewModel() {
+
+    private val _userLiveData = MutableLiveData<User>()
+    val userLiveData: LiveData<User>
+        get() = _userLiveData
+
+    private val _errorMessage = MutableLiveData<ErrorMessage>()
+    val errorMessage: LiveData<ErrorMessage>
+        get() = _errorMessage
 
     fun login(email: String, password: String) {
-        auth.login(email, password)
+        viewModelScope.launch {
+            try {
+                _userLiveData.value = useCases.loginUser(email, password)
+            } catch (t: Throwable) {
+                Timber.d(t)
+                _errorMessage.value = ErrorMessage.UNKNOWN_ERROR
+            }
+        }
     }
 
-    fun createAccount(email: String, password: String, displayName: String) {
-        auth.createAccount(email, password, displayName)
+    fun createAccount(email: String, password: String, name: String) {
+        viewModelScope.launch {
+            try {
+                _userLiveData.value = useCases.createUser(email, password, name)
+            } catch (t: Throwable) {
+                Timber.d(t)
+                _errorMessage.value = ErrorMessage.UNKNOWN_ERROR
+            }
+        }
     }
 
 }

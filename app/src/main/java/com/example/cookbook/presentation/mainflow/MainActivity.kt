@@ -11,9 +11,7 @@ import timber.log.Timber
 class MainActivity : AppCompatActivity() {
 
     val mainFlowComponent: MainFlowComponent by lazy {
-        val token = intent.extras?.get("token") as String
-
-        DaggerMainFlowComponent.factory().create(this, token)
+        DaggerMainFlowComponent.factory().create(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
