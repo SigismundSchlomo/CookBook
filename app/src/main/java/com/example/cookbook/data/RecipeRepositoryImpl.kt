@@ -28,7 +28,4 @@ class RecipeRepositoryImpl @Inject constructor(
         return db.getAll()
     }
 
-    override suspend fun enableCaching(): Boolean {
-        TODO("Not yet implemented")
-    }
 }
