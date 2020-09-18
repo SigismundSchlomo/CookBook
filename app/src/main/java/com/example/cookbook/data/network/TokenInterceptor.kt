@@ -15,7 +15,7 @@ class TokenInterceptor @Inject constructor(private val userRepository: UserRepos
 
         val requestBuilder = original.newBuilder().apply {
             val token = userRepository.getToken().value
-            addHeader("Authorization", token)
+            addHeader("Authorization", "Bearer $token")
             url(originalUrl)
         }
 

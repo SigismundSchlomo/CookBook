@@ -13,7 +13,7 @@ class SplashViewModel @Inject constructor(private val userRepository: UserReposi
         val user = userRepository.getUser()
         val currentTime = Calendar.getInstance().time
         val loggedIn = currentTime < user.token.expireDate
-        Timber.d(loggedIn.toString())
+        Timber.d("User logged in: $loggedIn")
         return loggedIn
     }
 

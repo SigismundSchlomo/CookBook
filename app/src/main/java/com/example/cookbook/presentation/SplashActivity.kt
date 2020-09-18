@@ -9,7 +9,6 @@ import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
 import com.example.cookbook.presentation.authflow.AuthActivity
 import com.example.cookbook.presentation.mainflow.MainActivity
-import timber.log.Timber
 import javax.inject.Inject
 
 class SplashActivity : AppCompatActivity() {
@@ -29,7 +28,6 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Timber.d("Splash activity onStart")
         if (viewModel.isUserLoggedIn()) {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)

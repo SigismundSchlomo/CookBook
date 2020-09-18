@@ -21,17 +21,20 @@ class UserDataSourceImpl @Inject constructor(private val context: Context) : Use
         context.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
     }
 
-    override fun getUser(): User {
+    override fun getUser(): User? {
         val id = sharedPrefs.getInt(ID_KEY, -1)
         val email = sharedPrefs.getString(EMAIL_KEY, "")!!
         val name = sharedPrefs.getString(NAME_KEY, "")!!
         val tokenValue = sharedPrefs.getString(TOKEN_VALUE_KEY, "")!!
         val tokenExpireTime = sharedPrefs.getLong(TOKEN_EXPIRE_DATA_KEY, 0L)
 
-        val tokenExpireDate = Date(tokenExpireTime)
 
-        val token = Token(tokenValue, tokenExpireDate)
-        val user = User(id, email, name, token)
+        var user: User? = null
+        if (isNotEmpty(id, email, name, tokenValue, tokenExpireTime)) {
+            val tokenExpireDate = Date(tokenExpireTime)
+            val token = Token(tokenValue, tokenExpireDate)
+            user = User(id, email, name, token)
+        }
 
         return user
     }
@@ -56,6 +59,20 @@ class UserDataSourceImpl @Inject constructor(private val context: Context) : Use
             putLong(TOKEN_EXPIRE_DATA_KEY, 0L)
             commit()
         }
+    }
+
+    private fun isNotEmpty(
+        id: Int,
+        email: String,
+        name: String,
+        tokenValue: String,
+        tokenExpireTime: Long
+    ): Boolean {
+        return (id != -1
+                && email.isNotEmpty()
+                && name.isNotEmpty()
+                && tokenValue.isNotEmpty()
+                && tokenExpireTime > 0)
     }
 
 }

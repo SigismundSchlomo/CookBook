@@ -23,6 +23,8 @@ class AuthViewModel @Inject constructor(private val useCases: UseCases) : ViewMo
         get() = _errorMessage
 
     fun login(email: String, password: String) {
+        Timber.d(email)
+        Timber.d(password)
         viewModelScope.launch {
             try {
                 _userLiveData.value = useCases.loginUser(email, password)
@@ -34,6 +36,9 @@ class AuthViewModel @Inject constructor(private val useCases: UseCases) : ViewMo
     }
 
     fun createAccount(email: String, password: String, name: String) {
+        Timber.d(email)
+        Timber.d(password)
+        Timber.d(name)
         viewModelScope.launch {
             try {
                 _userLiveData.value = useCases.createUser(email, password, name)
