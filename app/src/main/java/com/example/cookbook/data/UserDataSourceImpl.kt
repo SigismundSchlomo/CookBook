@@ -1,10 +1,9 @@
 package com.example.cookbook.data
 
 import android.content.Context
-import com.example.cookbook.domain.Token
-import com.example.cookbook.domain.User
 import com.example.cookbook.domain.UserDataSource
-
+import com.example.cookbook.domain.models.Token
+import com.example.cookbook.domain.models.User
 import java.util.*
 import javax.inject.Inject
 
@@ -32,8 +31,12 @@ class UserDataSourceImpl @Inject constructor(private val context: Context) : Use
         var user: User? = null
         if (isNotEmpty(id, email, name, tokenValue, tokenExpireTime)) {
             val tokenExpireDate = Date(tokenExpireTime)
-            val token = Token(tokenValue, tokenExpireDate)
-            user = User(id, email, name, token)
+            val token = Token(
+                tokenValue,
+                tokenExpireDate
+            )
+            user =
+                User(id, email, name, token)
         }
 
         return user

@@ -1,4 +1,4 @@
-package com.example.cookbook.domain
+package com.example.cookbook.domain.models
 
 data class User(
     val id: Int = 0, //TODO: take away default value

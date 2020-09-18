@@ -1,8 +1,8 @@
 package com.example.cookbook.data
 
-import com.example.cookbook.domain.Token
-import com.example.cookbook.domain.User
 import com.example.cookbook.domain.UserRepository
+import com.example.cookbook.domain.models.Token
+import com.example.cookbook.domain.models.User
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(private val userDataSource: UserDataSourceImpl) :

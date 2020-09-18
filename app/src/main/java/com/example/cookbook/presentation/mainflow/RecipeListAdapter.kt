@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookbook.R
-import com.example.cookbook.domain.Recipe
+import com.example.cookbook.domain.models.Recipe
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_view_recipe.view.*
 

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cookbook.domain.User
+import com.example.cookbook.domain.models.User
 import com.example.cookbook.domain.usecases.UseCases
 import com.example.cookbook.presentation.ErrorMessage
 import kotlinx.coroutines.launch

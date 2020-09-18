@@ -1,6 +1,6 @@
 package com.example.cookbook.data.network
 
-import com.example.cookbook.domain.Recipe
+import com.example.cookbook.domain.models.Recipe
 import retrofit2.http.*
 
 private const val RECIPES = "/recipes"

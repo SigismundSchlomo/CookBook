@@ -2,8 +2,8 @@ package com.example.cookbook.data.network
 
 import com.example.cookbook.data.network.models.AuthRequest
 import com.example.cookbook.domain.AuthNetwork
-import com.example.cookbook.domain.Token
-import com.example.cookbook.domain.User
+import com.example.cookbook.domain.models.Token
+import com.example.cookbook.domain.models.User
 import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
@@ -20,9 +20,15 @@ class AuthNetworkImpl @Inject constructor(private val authNetworkService: AuthNe
 
         val currentDate = Calendar.getInstance().time
         val expireData = Date(currentDate.time + (3_600_000 * 23)) // Expire after 23 hours
-        val token = Token(tokenStr, expireData)
+        val token =
+            Token(tokenStr, expireData)
 
-        return User(response.userId, response.email, response.userName, token)
+        return User(
+            response.userId,
+            response.email,
+            response.userName,
+            token
+        )
     }
 
     //TODO: retrieve user from sever (available after server version 0.4)
@@ -34,8 +40,14 @@ class AuthNetworkImpl @Inject constructor(private val authNetworkService: AuthNe
 
         val currentDate = Calendar.getInstance().time
         val expireData = Date(currentDate.time + (3_600_000 * 23)) // Expire after 23 hours
-        val token = Token(tokenStr, expireData)
+        val token =
+            Token(tokenStr, expireData)
 
-        return User(response.userId, response.email, response.userName, token)
+        return User(
+            response.userId,
+            response.email,
+            response.userName,
+            token
+        )
     }
 }

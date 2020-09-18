@@ -2,8 +2,8 @@ package com.example.cookbook.data
 
 import com.example.cookbook.data.db.RecipeDao
 import com.example.cookbook.data.network.RecipesNetworkService
-import com.example.cookbook.domain.Recipe
 import com.example.cookbook.domain.RecipesRepository
+import com.example.cookbook.domain.models.Recipe
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -20,7 +20,10 @@ class RecipeRepositoryImpl @Inject constructor(
     }
 
     override suspend fun createRecipe(header: String, body: String) {
-        val recipe = Recipe(header = header, body = body)
+        val recipe = Recipe(
+            header = header,
+            body = body
+        )
         recipesNetworkService.postRecipe(recipe)
     }
 

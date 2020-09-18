@@ -13,7 +13,7 @@ import androidx.lifecycle.observe
 import com.example.cookbook.App
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
-import com.example.cookbook.domain.isValid
+import com.example.cookbook.domain.models.isValid
 import com.example.cookbook.presentation.ErrorMessage
 import com.example.cookbook.presentation.mainflow.MainActivity
 import com.example.cookbook.utils.ConnectivityManager

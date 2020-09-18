@@ -1,4 +1,4 @@
-package com.example.cookbook.domain
+package com.example.cookbook.domain.models
 
 import java.util.*
 

@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cookbook.domain.Recipe
 import com.example.cookbook.domain.RecipesRepository
+import com.example.cookbook.domain.models.Recipe
 import com.example.cookbook.presentation.ErrorMessage
 import com.example.cookbook.utils.ConnectivityManager
 import kotlinx.coroutines.launch

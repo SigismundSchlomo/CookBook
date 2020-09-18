@@ -1,8 +1,8 @@
 package com.example.cookbook.domain.usecases
 
 import com.example.cookbook.domain.AuthNetwork
-import com.example.cookbook.domain.User
 import com.example.cookbook.domain.UserRepository
+import com.example.cookbook.domain.models.User
 import javax.inject.Inject
 
 class UseCases @Inject constructor(
