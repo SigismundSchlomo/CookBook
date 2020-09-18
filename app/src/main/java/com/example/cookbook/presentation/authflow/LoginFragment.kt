@@ -16,7 +16,7 @@ import com.example.cookbook.di.injectViewModel
 import com.example.cookbook.domain.models.isValid
 import com.example.cookbook.presentation.ErrorMessage
 import com.example.cookbook.presentation.mainflow.MainActivity
-import com.example.cookbook.utils.ConnectivityManager
+import com.example.cookbook.utils.ConnectivityManagerWrapper
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_login.*
 import java.util.*
@@ -29,7 +29,7 @@ class LoginFragment : Fragment() {
     lateinit var viewModel: AuthViewModel
 
     @Inject
-    lateinit var connectivityManager: ConnectivityManager
+    lateinit var connectivityManagerWrapper: ConnectivityManagerWrapper
 
     companion object {
         fun newInstance(): LoginFragment {

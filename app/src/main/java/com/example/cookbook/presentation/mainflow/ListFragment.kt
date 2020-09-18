@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
 import com.example.cookbook.presentation.ErrorMessage
-import com.example.cookbook.utils.ConnectivityManager
+import com.example.cookbook.utils.ConnectivityManagerWrapper
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_recipes_list.*
 import javax.inject.Inject
@@ -25,7 +25,7 @@ class ListFragment : Fragment() {
     lateinit var viewModel: RecipeViewModel
 
     @Inject
-    lateinit var connectivityManager: ConnectivityManager
+    lateinit var connectivityManagerWrapper: ConnectivityManagerWrapper
 
     private val recipeAdapter =
         RecipeListAdapter()

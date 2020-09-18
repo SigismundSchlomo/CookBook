@@ -7,14 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.cookbook.domain.RecipesRepository
 import com.example.cookbook.domain.models.Recipe
 import com.example.cookbook.presentation.ErrorMessage
-import com.example.cookbook.utils.ConnectivityManager
+import com.example.cookbook.utils.ConnectivityManagerWrapper
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 class RecipeViewModel @Inject constructor(
     private val repo: RecipesRepository,
-    private val connectivityManager: ConnectivityManager
+    private val connectivityManagerWrapper: ConnectivityManagerWrapper
 ) : ViewModel() {
 
     private val _recipesLiveData = MutableLiveData<List<Recipe>>()
@@ -26,7 +26,7 @@ class RecipeViewModel @Inject constructor(
         get() = _errorMessage
 
     fun refreshRecipes() {
-        if (connectivityManager.isConnected()) {
+        if (connectivityManagerWrapper.isConnected()) {
             tryNetworkCall()
         } else {
             getFromDatabase()

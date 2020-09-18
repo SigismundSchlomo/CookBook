@@ -12,7 +12,7 @@ import com.example.cookbook.App
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
 import com.example.cookbook.presentation.mainflow.MainActivity
-import com.example.cookbook.utils.ConnectivityManager
+import com.example.cookbook.utils.ConnectivityManagerWrapper
 import kotlinx.android.synthetic.main.fragment_register.*
 
 import javax.inject.Inject
@@ -24,7 +24,7 @@ class RegisterFragment : Fragment() {
     lateinit var viewModel: AuthViewModel
 
     @Inject
-    lateinit var connectivityManager: ConnectivityManager
+    lateinit var connectivityManagerWrapper: ConnectivityManagerWrapper
 
     companion object {
         fun newInstance(): RegisterFragment {

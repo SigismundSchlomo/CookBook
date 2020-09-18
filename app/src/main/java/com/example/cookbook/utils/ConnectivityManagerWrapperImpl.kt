@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.cookbook.utils
 
 import android.content.Context
@@ -6,8 +8,8 @@ import android.net.NetworkInfo
 import androidx.appcompat.app.AlertDialog
 import javax.inject.Inject
 
-class ConnectivityManagerImpl @Inject constructor(private val context: Context) :
-    ConnectivityManager {
+class ConnectivityManagerWrapperImpl @Inject constructor(private val context: Context) :
+    ConnectivityManagerWrapper {
 
     override fun isConnected(): Boolean {
         return if (android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.P) {
