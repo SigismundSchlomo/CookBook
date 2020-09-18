@@ -26,7 +26,10 @@
 
 
         <activity android:name=".presentation.mainflow.MainActivity" />
-        <activity android:name=".presentation.authflow.AuthActivity" />
+        <activity
+            android:name=".presentation.authflow.AuthActivity"
+            android:noHistory="true"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar" />
 
     </application>
 

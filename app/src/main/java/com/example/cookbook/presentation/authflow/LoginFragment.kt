@@ -1,6 +1,7 @@
 package com.example.cookbook.presentation.authflow
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.cookbook.App
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
+import com.example.cookbook.presentation.mainflow.MainActivity
 import com.example.cookbook.utils.ConnectivityManager
 import kotlinx.android.synthetic.main.fragment_login.*
 import javax.inject.Inject
@@ -50,7 +52,7 @@ class LoginFragment : Fragment() {
         createAccountButton.setOnClickListener {
             activity?.supportFragmentManager?.commit {
                 addToBackStack(null)
-                replace(R.id.auth_fragment_container, CreateAccountFragment.newInstance())
+                replace(R.id.auth_fragment_container, RegisterFragment.newInstance())
             }
         }
 
@@ -58,6 +60,9 @@ class LoginFragment : Fragment() {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
             viewModel.login(email, password)
+            val intent = Intent(activity, MainActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
         }
 
     }

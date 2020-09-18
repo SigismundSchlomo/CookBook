@@ -4,8 +4,8 @@ import android.content.Context
 import com.example.cookbook.di.ConnectivityModule
 import com.example.cookbook.di.UserModule
 import com.example.cookbook.presentation.SplashActivity
-import com.example.cookbook.presentation.authflow.CreateAccountFragment
 import com.example.cookbook.presentation.authflow.LoginFragment
+import com.example.cookbook.presentation.authflow.RegisterFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -27,7 +27,7 @@ interface AppComponent {
     }
 
     fun inject(fragment: LoginFragment)
-    fun inject(fragment: CreateAccountFragment)
+    fun inject(fragment: RegisterFragment)
     fun inject(activity: SplashActivity)
 
 }

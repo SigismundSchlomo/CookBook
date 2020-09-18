@@ -1,6 +1,7 @@
 package com.example.cookbook.presentation.authflow
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +11,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.cookbook.App
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
+import com.example.cookbook.presentation.mainflow.MainActivity
 import com.example.cookbook.utils.ConnectivityManager
-import kotlinx.android.synthetic.main.fragment_create_account.*
+import kotlinx.android.synthetic.main.fragment_register.*
 
 import javax.inject.Inject
 
-class CreateAccountFragment : Fragment() {
+class RegisterFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -25,8 +27,8 @@ class CreateAccountFragment : Fragment() {
     lateinit var connectivityManager: ConnectivityManager
 
     companion object {
-        fun newInstance(): CreateAccountFragment {
-            return CreateAccountFragment()
+        fun newInstance(): RegisterFragment {
+            return RegisterFragment()
         }
     }
 
@@ -41,7 +43,7 @@ class CreateAccountFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_create_account, container, false)
+        return inflater.inflate(R.layout.fragment_register, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,6 +54,8 @@ class CreateAccountFragment : Fragment() {
             val password = passwordEditText.text.toString()
             val displayName = createNameEditText.text.toString()
             viewModel.createAccount(email, password, displayName)
+            val intent = Intent(activity, MainActivity::class.java)
+            startActivity(intent)
         }
 
     }
