@@ -3,6 +3,7 @@ package com.example.cookbook.di.mainflowcomponent
 import com.example.cookbook.BuildConfig
 import com.example.cookbook.data.network.RecipesNetworkService
 import com.example.cookbook.data.network.TokenInterceptor
+import com.example.cookbook.data.network.UserHeaderInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
@@ -44,9 +45,15 @@ class RecipeNetworkModule {
 
     @LoggedUserScope
     @Provides
-    fun provideInterceptors(tokenInterceptor: TokenInterceptor): ArrayList<Interceptor> {
+    fun provideInterceptors(
+        tokenInterceptor: TokenInterceptor,
+        headerInterceptor: UserHeaderInterceptor
+    ): ArrayList<Interceptor> {
         val interceptors = arrayListOf<Interceptor>()
+
         interceptors.add(tokenInterceptor)
+
+        interceptors.add(headerInterceptor)
 
         val loggingInterceptor = HttpLoggingInterceptor().apply {
             level = if (BuildConfig.DEBUG) {
