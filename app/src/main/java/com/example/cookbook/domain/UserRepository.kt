@@ -5,7 +5,7 @@ import com.example.cookbook.domain.models.User
 
 interface UserRepository {
 
-    fun getUser(): User
+    fun getUser(): User?
     fun saveUser(user: User)
     fun deleteUser()
     fun getToken(): Token

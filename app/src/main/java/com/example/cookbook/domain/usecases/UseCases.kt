@@ -22,7 +22,7 @@ class UseCases @Inject constructor(
     }
 
     fun getCurrentUser(): User {
-        return userRepository.getUser()
+        return userRepository.getUser()!!
     }
 
 }

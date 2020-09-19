@@ -10,9 +10,9 @@ class UserRepositoryImpl @Inject constructor(private val userDataSource: UserDat
 
     private var _user: User? = userDataSource.getUser()
 
-    override fun getUser(): User {
+    override fun getUser(): User? {
         _user = userDataSource.getUser()
-        return _user!!
+        return _user
     }
 
     override fun saveUser(user: User) {

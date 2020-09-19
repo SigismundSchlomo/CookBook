@@ -10,7 +10,7 @@ class SplashViewModel @Inject constructor(private val userRepository: UserReposi
     ViewModel() {
 
     fun isUserLoggedIn(): Boolean {
-        val user = userRepository.getUser()
+        val user = userRepository.getUser() ?: return false
         val currentTime = Calendar.getInstance().time
         val loggedIn = currentTime < user.token.expireDate
         Timber.d("User logged in: $loggedIn")

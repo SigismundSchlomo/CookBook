@@ -14,7 +14,7 @@ class UserHeaderInterceptor @Inject constructor(private val userRepository: User
         val originalUrl = original.url
 
         val requestBuilder = original.newBuilder().apply {
-            val userId = userRepository.getUser().id
+            val userId = userRepository.getUser()?.id
             addHeader("userId", "$userId")
             url(originalUrl)
         }
