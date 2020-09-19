@@ -62,6 +62,7 @@ class ListFragment : Fragment() {
 
         viewModel.recipesLiveData.observe(viewLifecycleOwner) {
             recipeAdapter.items = it
+            refreshLayout.isRefreshing = false
         }
 
         viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
@@ -78,6 +79,10 @@ class ListFragment : Fragment() {
                 addToBackStack(null)
                 replace(R.id.main_fragment_container, CreateRecipeFragment.newInstance())
             }
+        }
+
+        refreshLayout.setOnRefreshListener {
+            viewModel.refreshRecipes()
         }
 
     }
