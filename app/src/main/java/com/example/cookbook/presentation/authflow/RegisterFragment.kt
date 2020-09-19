@@ -72,6 +72,7 @@ class RegisterFragment : Fragment() {
             }
         }
 
+        //TODO: Make own error handling tool for every viewModel
         viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
             val messageResource = when (errorMessage) {
                 ErrorMessage.SERVICE_UNAVAILABLE -> R.string.service_unavailable
