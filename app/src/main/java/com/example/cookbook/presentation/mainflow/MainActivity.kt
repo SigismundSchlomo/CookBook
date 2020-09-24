@@ -1,11 +1,13 @@
 package com.example.cookbook.presentation.mainflow
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.example.cookbook.R
 import com.example.cookbook.di.mainflowcomponent.DaggerMainFlowComponent
 import com.example.cookbook.di.mainflowcomponent.MainFlowComponent
+import com.example.cookbook.presentation.authflow.AuthActivity
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
@@ -27,4 +29,11 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    fun moveToAuthActivity() {
+        val intent = Intent(this, AuthActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 }
