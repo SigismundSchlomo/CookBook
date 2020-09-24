@@ -23,6 +23,8 @@
     <string name="done_button_description" translatable="true">Button to save recipe</string>
     <string name="header_edittext_hint" translatable="true">Header</string>
     <string name="recipe_body_edittext_hint" translatable="true">Describe your recipe</string>
+    <string name="logout">Logout</string>
+    <string name="logout_menu_item_description">Logout from account</string>
 
 
 </resources>

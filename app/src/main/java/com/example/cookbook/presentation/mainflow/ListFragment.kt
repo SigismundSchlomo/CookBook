@@ -60,6 +60,28 @@ class ListFragment : Fragment() {
             adapter = recipeAdapter
         }
 
+        mainAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.logout -> {
+                    viewModel.logout()
+                    (requireActivity() as MainActivity).moveToAuthActivity()
+                    true
+                }
+                else -> false
+            }
+        }
+
+        addRecipeButton.setOnClickListener {
+            activity?.supportFragmentManager?.commit {
+                addToBackStack(null)
+                replace(R.id.main_fragment_container, CreateRecipeFragment.newInstance())
+            }
+        }
+
+        refreshLayout.setOnRefreshListener {
+            viewModel.refreshRecipes()
+        }
+
         viewModel.recipesLiveData.observe(viewLifecycleOwner) {
             recipeAdapter.items = it
             refreshLayout.isRefreshing = false
@@ -72,17 +94,6 @@ class ListFragment : Fragment() {
                 ErrorMessage.DATA_FROM_DATABASE -> R.string.data_from_database
             }
             showErrorMessage(messageResource)
-        }
-
-        addRecipeButton.setOnClickListener {
-            activity?.supportFragmentManager?.commit {
-                addToBackStack(null)
-                replace(R.id.main_fragment_container, CreateRecipeFragment.newInstance())
-            }
-        }
-
-        refreshLayout.setOnRefreshListener {
-            viewModel.refreshRecipes()
         }
 
     }

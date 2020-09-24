@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cookbook.domain.RecipesRepository
 import com.example.cookbook.domain.models.Recipe
+import com.example.cookbook.domain.usecases.RecipeInteractor
 import com.example.cookbook.presentation.ErrorMessage
 import com.example.cookbook.utils.ConnectivityManagerWrapper
 import kotlinx.coroutines.launch
@@ -14,7 +15,8 @@ import javax.inject.Inject
 
 class RecipeViewModel @Inject constructor(
     private val repo: RecipesRepository,
-    private val connectivityManagerWrapper: ConnectivityManagerWrapper
+    private val connectivityManagerWrapper: ConnectivityManagerWrapper,
+    private val useCase: RecipeInteractor
 ) : ViewModel() {
 
     private val _recipesLiveData = MutableLiveData<List<Recipe>>()
@@ -33,6 +35,8 @@ class RecipeViewModel @Inject constructor(
         }
     }
 
+
+    //TODO: Move to useCases
     fun createRecipe(header: String, body: String) {
         viewModelScope.launch {
             try {
@@ -44,6 +48,12 @@ class RecipeViewModel @Inject constructor(
         }
     }
 
+    fun logout() {
+        useCase.logoutUser()
+        Timber.d("Successfully logout")
+    }
+
+    //TODO: Move to useCases
     private fun tryNetworkCall() {
         viewModelScope.launch {
             try {
@@ -58,6 +68,7 @@ class RecipeViewModel @Inject constructor(
         }
     }
 
+    //TODO: Move to useCase
     private fun getFromDatabase() {
         viewModelScope.launch {
             _recipesLiveData.value = repo.getFromDatabase()

@@ -16,7 +16,7 @@ import javax.inject.Inject
 class AuthViewModel @Inject constructor(private val useCases: UseCases) : ViewModel() {
 
     private val _userLiveData = MutableLiveData<User>()
-    val userLiveData: LiveData<User>
+    val userLiveData: LiveData<User> //TODO: Improve Error handling (make it unique to the network service)
         get() = _userLiveData
 
     private val _errorMessage = MutableLiveData<ErrorMessage>()

@@ -5,6 +5,8 @@ import com.example.cookbook.domain.UserRepository
 import com.example.cookbook.domain.models.User
 import javax.inject.Inject
 
+//TODO: Rewrite to use sealed class
+
 class UseCases @Inject constructor(
     private val userRepository: UserRepository,
     private val networkService: AuthNetwork
