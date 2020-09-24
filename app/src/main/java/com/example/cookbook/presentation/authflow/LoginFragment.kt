@@ -14,7 +14,7 @@ import com.example.cookbook.App
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
 import com.example.cookbook.domain.models.isValid
-import com.example.cookbook.presentation.ErrorMessage
+import com.example.cookbook.presentation.authflow.AuthViewModel.ErrorMessage
 import com.example.cookbook.presentation.mainflow.MainActivity
 import com.example.cookbook.utils.ConnectivityManagerWrapper
 import com.google.android.material.snackbar.Snackbar
@@ -82,7 +82,9 @@ class LoginFragment : Fragment() {
             val messageResource = when (errorMessage) {
                 ErrorMessage.SERVICE_UNAVAILABLE -> R.string.service_unavailable
                 ErrorMessage.UNKNOWN_ERROR -> R.string.unknown_error
-                ErrorMessage.DATA_FROM_DATABASE -> R.string.data_from_database
+                ErrorMessage.PASSWORD_INVALID -> R.string.password_invalid
+                ErrorMessage.EMAIL_INVALID -> R.string.email_invalid
+
             }
             showErrorMessage(messageResource)
         }

@@ -7,6 +7,8 @@
     <string name="service_unavailable" translatable="true">Server currently unavailable</string>
     <string name="unknown_error" translatable="true">Oop, something gone wrong!</string>
     <string name="data_from_database" translatable="true">No internet connection. Cached data is loaded</string>
+    <string name="password_invalid" translatable="true">Password must have 8 characters or more</string>
+    <string name="email_invalid" translatable="true">Invalid email</string>
 
 
     <string name="app_name" translatable="true">CookBook</string>
