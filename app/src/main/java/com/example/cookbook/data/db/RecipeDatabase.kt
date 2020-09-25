@@ -2,7 +2,7 @@ package com.example.cookbook.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.cookbook.domain.Recipe
+import com.example.cookbook.domain.models.Recipe
 
 @Database(entities = arrayOf(Recipe::class), version = 1, exportSchema = false)
 abstract class RecipeDatabase : RoomDatabase() {

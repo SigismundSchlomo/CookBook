@@ -2,7 +2,7 @@ package com.example.cookbook.utils
 
 import android.content.Context
 
-interface ConnectivityManager {
+interface ConnectivityManagerWrapper {
 
     fun isConnected(): Boolean
 

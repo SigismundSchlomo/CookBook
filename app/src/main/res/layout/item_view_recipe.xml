@@ -1,15 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:clickable="true"
+    android:focusable="true">
 
-    <TextView
-        android:id="@+id/itemHeader"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Header" />
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/itemHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_recipe_info_text"
+            android:textSize="21sp"
+            tools:text="Header" />
+
+        <TextView
+            android:id="@+id/recipeBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_recipe_info_text"
+            android:textSize="15sp"
+            android:ellipsize="end"
+            android:maxLines="5"
+            tools:text="@string/lorem_ipsum_280" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
 

@@ -1,10 +1,37 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorSecondary</item>
+    </style>
+
+    <style name="CredentialInputViewStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <item name="android:layout_marginStart">@dimen/standard_margin</item>
+        <item name="android:layout_marginEnd">@dimen/standard_margin</item>
+        <item name="android:layout_marginTop">@dimen/half_margin</item>
+        <item name="android:layout_marginBottom">@dimen/half_margin</item>
+
+    </style>
+
+    <style name="RecipeBodyEditor" parent="Widget.AppCompat.EditText">
+
+        <item name="android:inputType">text</item>
+        <item name="android:textSize">@dimen/recipe_body_text_size</item>
+        <item name="android:gravity">top|start</item>
+        <item name="android:layout_marginBottom">@dimen/standard_margin</item>
+
+    </style>
+
+    <style name="RecipeHeaderEditor" parent="Widget.AppCompat.EditText">
+
+        <item name="android:inputType">text</item>
+        <item name="android:layout_marginTop">@dimen/half_margin</item>
+        <item name="android:layout_marginBottom">@dimen/half_margin</item>
+        <item name="android:textSize">@dimen/header_text_size</item>
+
     </style>
 
 </resources>

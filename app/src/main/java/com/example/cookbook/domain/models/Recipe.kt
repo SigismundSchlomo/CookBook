@@ -1,4 +1,4 @@
-package com.example.cookbook.domain
+package com.example.cookbook.domain.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -9,7 +9,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Recipe(
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @Json(name = "id")
     val id: Int = 0,
     @Json(name = "header")

@@ -1,7 +1,7 @@
 package com.example.cookbook.di
 
-import com.example.cookbook.utils.ConnectivityManager
-import com.example.cookbook.utils.ConnectivityManagerImpl
+import com.example.cookbook.utils.ConnectivityManagerWrapper
+import com.example.cookbook.utils.ConnectivityManagerWrapperImpl
 import dagger.Binds
 import dagger.Module
 
@@ -9,6 +9,6 @@ import dagger.Module
 abstract class ConnectivityModule {
 
     @Binds
-    abstract fun provideConnectivityManager(manager: ConnectivityManagerImpl): ConnectivityManager
+    abstract fun provideConnectivityManager(manager: ConnectivityManagerWrapperImpl): ConnectivityManagerWrapper
 
 }

@@ -1,21 +1,20 @@
-package com.example.cookbook.presentation
+package com.example.cookbook.presentation.authflow
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.example.cookbook.R
-import timber.log.Timber
 
-class MainActivity : AppCompatActivity() {
+class AuthActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        Timber.d("Main activity onCreate")
+        setContentView(R.layout.activity_auth)
 
         supportFragmentManager.commit {
-            replace(R.id.main_fragment_container, ListFragment.newInstance())
+            replace(R.id.auth_fragment_container, LoginFragment.newInstance())
         }
 
     }
+
 }

@@ -1,7 +1,8 @@
-package com.example.cookbook.presentation
+package com.example.cookbook.presentation.mainflow
 
 import android.content.Context
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +11,10 @@ import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cookbook.App
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
-import com.example.cookbook.utils.ConnectivityManager
+import com.example.cookbook.presentation.ErrorMessage
+import com.example.cookbook.utils.ConnectivityManagerWrapper
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_recipes_list.*
 import javax.inject.Inject
@@ -25,7 +26,7 @@ class ListFragment : Fragment() {
     lateinit var viewModel: RecipeViewModel
 
     @Inject
-    lateinit var connectivityManager: ConnectivityManager
+    lateinit var connectivityManagerWrapper: ConnectivityManagerWrapper
 
     private val recipeAdapter =
         RecipeListAdapter()
@@ -38,8 +39,17 @@ class ListFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireActivity().application as App).appComponent.inject(this)
+        (requireActivity() as MainActivity).mainFlowComponent.inject(this)
         viewModel = injectViewModel(viewModelFactory)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val inflater = TransitionInflater.from(requireContext())
+        enterTransition = inflater.inflateTransition(R.transition.slide_right)
+        exitTransition = inflater.inflateTransition(R.transition.fade)
+
     }
 
     override fun onCreateView(
@@ -60,24 +70,40 @@ class ListFragment : Fragment() {
             adapter = recipeAdapter
         }
 
-        viewModel.recipesLiveData.observe(viewLifecycleOwner) {
-            recipeAdapter.items = it
-        }
-
-        viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
-            val messageResource = when (errorMessage) {
-                RecipeViewModel.ErrorMessage.SERVICE_UNAVAILABLE -> R.string.service_unavailable
-                RecipeViewModel.ErrorMessage.UNKNOWN_ERROR -> R.string.unknown_error
-                RecipeViewModel.ErrorMessage.DATA_FROM_DATABASE -> R.string.data_from_database
+        mainAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.logout -> {
+                    viewModel.logout()
+                    (requireActivity() as MainActivity).moveToAuthActivity()
+                    true
+                }
+                else -> false
             }
-            showErrorMessage(messageResource)
         }
 
         addRecipeButton.setOnClickListener {
             activity?.supportFragmentManager?.commit {
                 addToBackStack(null)
-                replace(R.id.main_fragment_container, CreateFragment.newInstance())
+                replace(R.id.main_fragment_container, CreateRecipeFragment.newInstance())
             }
+        }
+
+        refreshLayout.setOnRefreshListener {
+            viewModel.refreshRecipes()
+        }
+
+        viewModel.recipesLiveData.observe(viewLifecycleOwner) {
+            recipeAdapter.items = it
+            refreshLayout.isRefreshing = false
+        }
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+            val messageResource = when (errorMessage) {
+                ErrorMessage.SERVICE_UNAVAILABLE -> R.string.service_unavailable
+                ErrorMessage.UNKNOWN_ERROR -> R.string.unknown_error
+                ErrorMessage.DATA_FROM_DATABASE -> R.string.data_from_database
+            }
+            showErrorMessage(messageResource)
         }
 
     }

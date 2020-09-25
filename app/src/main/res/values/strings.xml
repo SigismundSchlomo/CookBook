@@ -1,11 +1,32 @@
 <resources>
-    <string name="app_name">CookBook</string>
+    <!-- technical needs -->
+    <string name="lorem_ipsum_280" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit voluptate</string>
 
-    <string name="add_recipe_button_description">Add recipe button</string>
 
     <!--  Error messages  -->
     <string name="service_unavailable" translatable="true">Server currently unavailable</string>
     <string name="unknown_error" translatable="true">Oop, something gone wrong!</string>
     <string name="data_from_database" translatable="true">No internet connection. Cached data is loaded</string>
+    <string name="password_invalid" translatable="true">Password must have 8 characters or more</string>
+    <string name="email_invalid" translatable="true">Invalid email</string>
+
+
+    <string name="app_name" translatable="true">CookBook</string>
+    <string name="add_recipe_button_description" translatable="true">Add recipe button</string>
+    <string name="email_hint" translatable="true">Email</string>
+    <string name="password_hint" translatable="true">Password</string>
+    <string name="login_label" translatable="true">Login</string>
+    <string name="register_label" translatable="true">Register</string>
+    <string name="greeting_label" translatable="true">Welcome!</string>
+    <string name="create_new_account_label" translatable="true">Create new account</string>
+    <string name="create_label" translatable="true">Create</string>
+    <string name="name_label" translatable="true">Your name</string>
+    <string name="done_button_label" translatable="true">done</string>
+    <string name="done_button_description" translatable="true">Button to save recipe</string>
+    <string name="header_edittext_hint" translatable="true">Header</string>
+    <string name="recipe_body_edittext_hint" translatable="true">Describe your recipe</string>
+    <string name="logout">Logout</string>
+    <string name="logout_menu_item_description">Logout from account</string>
+
 
 </resources>

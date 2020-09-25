@@ -1,0 +1,33 @@
+package com.example.cookbook.di.appcomponent
+
+import android.content.Context
+import com.example.cookbook.di.ConnectivityModule
+import com.example.cookbook.di.UserModule
+import com.example.cookbook.presentation.SplashActivity
+import com.example.cookbook.presentation.authflow.LoginFragment
+import com.example.cookbook.presentation.authflow.RegisterFragment
+import dagger.BindsInstance
+import dagger.Component
+import javax.inject.Singleton
+
+@Singleton
+@Component(
+    modules = [
+        UserModule::class,
+        SplashModule::class,
+        AuthNetworkModule::class,
+        ConnectivityModule::class,
+        AuthModule::class]
+)
+interface AppComponent {
+
+    @Component.Factory
+    interface Factory {
+        fun create(@BindsInstance context: Context): AppComponent
+    }
+
+    fun inject(fragment: LoginFragment)
+    fun inject(fragment: RegisterFragment)
+    fun inject(activity: SplashActivity)
+
+}
