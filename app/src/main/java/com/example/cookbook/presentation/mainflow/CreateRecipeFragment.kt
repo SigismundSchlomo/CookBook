@@ -2,6 +2,7 @@ package com.example.cookbook.presentation.mainflow
 
 import android.content.Context
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,15 @@ class CreateRecipeFragment : Fragment() {
         super.onAttach(context)
         (requireActivity() as MainActivity).mainFlowComponent.inject(this)
         viewModel = injectViewModel(viewModelFactory)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val inflater = TransitionInflater.from(requireContext())
+        enterTransition = inflater.inflateTransition(R.transition.slide_right)
+        exitTransition = inflater.inflateTransition(R.transition.fade)
+
     }
 
     override fun onCreateView(
