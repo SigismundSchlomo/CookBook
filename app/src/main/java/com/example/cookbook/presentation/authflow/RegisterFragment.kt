@@ -17,6 +17,7 @@ import com.example.cookbook.presentation.authflow.AuthViewModel.ErrorMessage
 import com.example.cookbook.presentation.mainflow.MainActivity
 import com.example.cookbook.utils.ConnectivityManagerWrapper
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.transition.MaterialSharedAxis
 import kotlinx.android.synthetic.main.fragment_register.*
 import java.util.*
 
@@ -41,6 +42,17 @@ class RegisterFragment : Fragment() {
         super.onAttach(context)
         (requireActivity().application as App).appComponent.inject(this)
         viewModel = injectViewModel(viewModelFactory)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val forward = MaterialSharedAxis(MaterialSharedAxis.X, true)
+        enterTransition = forward
+
+        val backward = MaterialSharedAxis(MaterialSharedAxis.X, false)
+        returnTransition = backward
+
     }
 
     override fun onCreateView(
