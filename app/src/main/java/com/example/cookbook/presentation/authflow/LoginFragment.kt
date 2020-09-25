@@ -18,6 +18,7 @@ import com.example.cookbook.presentation.authflow.AuthViewModel.ErrorMessage
 import com.example.cookbook.presentation.mainflow.MainActivity
 import com.example.cookbook.utils.ConnectivityManagerWrapper
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.transition.MaterialSharedAxis
 import kotlinx.android.synthetic.main.fragment_login.*
 import java.util.*
 import javax.inject.Inject
@@ -41,6 +42,17 @@ class LoginFragment : Fragment() {
         super.onAttach(context)
         (requireActivity().application as App).appComponent.inject(this)
         viewModel = injectViewModel(viewModelFactory)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val backward = MaterialSharedAxis(MaterialSharedAxis.X, false)
+        reenterTransition = backward
+
+        val forward = MaterialSharedAxis(MaterialSharedAxis.X, true)
+        exitTransition = forward
+
     }
 
     override fun onCreateView(
