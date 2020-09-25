@@ -23,6 +23,8 @@ class AuthViewModel @Inject constructor(private val useCases: UseCases) : ViewMo
     val errorMessage: LiveData<ErrorMessage>
         get() = _errorMessage
 
+    var savedEmail: String = ""
+
     fun login(email: String, password: String) {
 
         if (BuildConfig.DEBUG) {

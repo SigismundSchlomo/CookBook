@@ -54,7 +54,10 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        emailEditText.setText(viewModel.savedEmail)
+
         createAccountButton.setOnClickListener {
+            viewModel.savedEmail = emailEditText.text.toString()
             activity?.supportFragmentManager?.commit {
                 addToBackStack(null)
                 replace(R.id.auth_fragment_container, RegisterFragment.newInstance())
@@ -77,7 +80,6 @@ class LoginFragment : Fragment() {
             }
         }
 
-        //TODO: Make own error handling tool for every viewModel
         viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
             val messageResource = when (errorMessage) {
                 ErrorMessage.SERVICE_UNAVAILABLE -> R.string.service_unavailable
