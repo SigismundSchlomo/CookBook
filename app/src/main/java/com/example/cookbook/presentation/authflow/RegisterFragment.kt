@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import com.example.cookbook.App
@@ -75,6 +76,13 @@ class RegisterFragment : Fragment() {
             viewModel.createAccount(email, password, displayName)
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
+        }
+
+        navigateToLoginButton.setOnClickListener {
+            viewModel.savedEmail = emailEditText.text.toString()
+            activity?.supportFragmentManager?.commit {
+                replace(R.id.auth_fragment_container, RegisterFragment.newInstance())
+            }
         }
 
         viewModel.userLiveData.observe(viewLifecycleOwner) { user ->
