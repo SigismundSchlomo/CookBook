@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cookbook.domain.RecipesRepository
+import com.example.cookbook.domain.RecipeRepository
 import com.example.cookbook.domain.models.Recipe
 import com.example.cookbook.domain.usecases.RecipeInteractor
 import com.example.cookbook.presentation.ErrorMessage
@@ -14,7 +14,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class RecipeViewModel @Inject constructor(
-    private val repo: RecipesRepository,
+    private val repo: RecipeRepository,
     private val connectivityManagerWrapper: ConnectivityManagerWrapper,
     private val useCase: RecipeInteractor
 ) : ViewModel() {

@@ -2,7 +2,7 @@ package com.example.cookbook.data
 
 import com.example.cookbook.data.db.RecipeDao
 import com.example.cookbook.data.network.RecipesNetworkService
-import com.example.cookbook.domain.RecipesRepository
+import com.example.cookbook.domain.RecipeRepository
 import com.example.cookbook.domain.models.Recipe
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -11,7 +11,7 @@ import javax.inject.Inject
 class RecipeRepositoryImpl @Inject constructor(
     private val recipesNetworkService: RecipesNetworkService,
     private val db: RecipeDao
-) : RecipesRepository {
+) : RecipeRepository {
 
     override suspend fun getRecipes(): List<Recipe> {
         val recipes = recipesNetworkService.getRecipes()
