@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_create_recipe.*
 import javax.inject.Inject
 
@@ -54,12 +55,13 @@ class CreateRecipeFragment : Fragment() {
         topAppBar.apply {
             setNavigationIcon(R.drawable.ic_back_white_24)
             setNavigationOnClickListener {
-                activity?.supportFragmentManager?.popBackStack()
+                navigateBack()
             }
             setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.done -> {
                         createRecipe()
+                        navigateBack()
                         true
                     }
                     else -> false
@@ -74,6 +76,14 @@ class CreateRecipeFragment : Fragment() {
         val header = headerEditText.text.toString()
         val body = bodyEditText.text.toString()
         viewModel.createRecipe(header, body)
+    }
+
+    private fun navigateBack() {
+        activity?.supportFragmentManager?.popBackStack()
+    }
+
+    private fun showSnackbar(message: String) {
+        Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show()
     }
 
 }
