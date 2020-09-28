@@ -51,15 +51,22 @@ class CreateRecipeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        topAppBar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.done -> {
-                    createRecipe()
-                    true
+        topAppBar.apply {
+            setNavigationIcon(R.drawable.ic_back_white_24)
+            setNavigationOnClickListener {
+                activity?.supportFragmentManager?.popBackStack()
+            }
+            setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.done -> {
+                        createRecipe()
+                        true
+                    }
+                    else -> false
                 }
-                else -> false
             }
         }
+
 
     }
 
