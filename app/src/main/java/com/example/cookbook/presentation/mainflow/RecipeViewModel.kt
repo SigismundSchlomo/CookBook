@@ -26,6 +26,10 @@ class RecipeViewModel @Inject constructor(
         get() = _errorMessage
 
     fun refreshRecipes() {
+        loadFromNetwork()
+    }
+
+    fun loadRecipes() {
         if (connectivityManagerWrapper.isConnected()) {
             loadFromNetwork()
         } else {
