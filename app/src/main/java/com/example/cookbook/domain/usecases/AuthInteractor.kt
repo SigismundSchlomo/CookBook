@@ -5,9 +5,7 @@ import com.example.cookbook.domain.UserRepository
 import com.example.cookbook.domain.models.User
 import javax.inject.Inject
 
-//TODO: Rewrite to use sealed class
-
-class UseCases @Inject constructor(
+class AuthInteractor @Inject constructor(
     private val userRepository: UserRepository,
     private val networkService: AuthNetwork
 ) {
@@ -21,10 +19,6 @@ class UseCases @Inject constructor(
         val user = networkService.createUser(email, password, name)
         userRepository.saveUser(user)
         return user
-    }
-
-    fun getCurrentUser(): User {
-        return userRepository.getUser()!!
     }
 
 }

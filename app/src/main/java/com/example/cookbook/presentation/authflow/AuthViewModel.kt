@@ -7,13 +7,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cookbook.BuildConfig
 import com.example.cookbook.domain.models.User
-import com.example.cookbook.domain.usecases.UseCases
+import com.example.cookbook.domain.usecases.AuthInteractor
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 
-class AuthViewModel @Inject constructor(private val useCases: UseCases) : ViewModel() {
+class AuthViewModel @Inject constructor(private val authInteractor: AuthInteractor) : ViewModel() {
 
     private val _userLiveData = MutableLiveData<User>()
     val userLiveData: LiveData<User>
@@ -40,7 +40,7 @@ class AuthViewModel @Inject constructor(private val useCases: UseCases) : ViewMo
 
         viewModelScope.launch {
             try {
-                _userLiveData.value = useCases.loginUser(email, password)
+                _userLiveData.value = authInteractor.loginUser(email, password)
             } catch (t: Throwable) {
                 Timber.d(t)
                 _errorMessage.value = ErrorMessage.UNKNOWN_ERROR
@@ -56,7 +56,7 @@ class AuthViewModel @Inject constructor(private val useCases: UseCases) : ViewMo
         }
         viewModelScope.launch {
             try {
-                _userLiveData.value = useCases.createUser(email, password, name)
+                _userLiveData.value = authInteractor.createUser(email, password, name)
             } catch (t: Throwable) {
                 Timber.d(t)
                 _errorMessage.value = ErrorMessage.UNKNOWN_ERROR
