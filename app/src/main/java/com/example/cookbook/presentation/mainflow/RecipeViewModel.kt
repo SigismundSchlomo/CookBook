@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cookbook.domain.RecipeRepository
 import com.example.cookbook.domain.models.Recipe
 import com.example.cookbook.domain.usecases.RecipeInteractor
 import com.example.cookbook.presentation.ErrorMessage
@@ -14,9 +13,8 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class RecipeViewModel @Inject constructor(
-    private val repo: RecipeRepository,
     private val connectivityManagerWrapper: ConnectivityManagerWrapper,
-    private val useCase: RecipeInteractor
+    private val interactor: RecipeInteractor
 ) : ViewModel() {
 
     private val _recipesLiveData = MutableLiveData<List<Recipe>>()
@@ -29,18 +27,16 @@ class RecipeViewModel @Inject constructor(
 
     fun refreshRecipes() {
         if (connectivityManagerWrapper.isConnected()) {
-            tryNetworkCall()
+            loadFromNetwork()
         } else {
             getFromDatabase()
         }
     }
 
-
-    //TODO: Move to useCases
     fun createRecipe(header: String, body: String) {
         viewModelScope.launch {
             try {
-                repo.createRecipe(header, body)
+                interactor.createRecipe(header, body)
             } catch (t: Throwable) {
                 Timber.d(t)
                 _errorMessage.value = ErrorMessage.UNKNOWN_ERROR
@@ -49,15 +45,14 @@ class RecipeViewModel @Inject constructor(
     }
 
     fun logout() {
-        useCase.logoutUser()
+        interactor.logoutUser()
         Timber.d("Successfully logout")
     }
 
-    //TODO: Move to useCases
-    private fun tryNetworkCall() {
+    private fun loadFromNetwork() {
         viewModelScope.launch {
             try {
-                _recipesLiveData.value = repo.getRecipes()
+                _recipesLiveData.value = interactor.loadRecipesFromNetwork()
             } catch (t: Throwable) {
                 Timber.d(t)
                 _errorMessage.value = when (t.message) {
@@ -68,12 +63,14 @@ class RecipeViewModel @Inject constructor(
         }
     }
 
-    //TODO: Move to useCase
     private fun getFromDatabase() {
         viewModelScope.launch {
-            _recipesLiveData.value = repo.getFromDatabase()
+            _recipesLiveData.value = interactor.loadRecipesFromDatabase()
             _errorMessage.value = ErrorMessage.DATA_FROM_DATABASE
         }
     }
+
+    //TODO: Expand functionality to delete recipes
+    //TODO: Expand functionality to update recipes
 
 }
