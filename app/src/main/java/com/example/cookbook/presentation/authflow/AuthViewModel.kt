@@ -1,5 +1,6 @@
 package com.example.cookbook.presentation.authflow
 
+import android.accounts.NetworkErrorException
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -41,6 +42,12 @@ class AuthViewModel @Inject constructor(private val authInteractor: AuthInteract
         viewModelScope.launch {
             try {
                 _userLiveData.value = authInteractor.loginUser(email, password)
+            } catch (ne: NetworkErrorException) {
+                Timber.d(ne)
+                _errorMessage.value = when (ne.message) {
+                    "HTTP 503 Service Unavailable" -> ErrorMessage.SERVICE_UNAVAILABLE
+                    else -> ErrorMessage.UNKNOWN_ERROR
+                }
             } catch (t: Throwable) {
                 Timber.d(t)
                 _errorMessage.value = ErrorMessage.UNKNOWN_ERROR
@@ -57,6 +64,12 @@ class AuthViewModel @Inject constructor(private val authInteractor: AuthInteract
         viewModelScope.launch {
             try {
                 _userLiveData.value = authInteractor.createUser(email, password, name)
+            } catch (ne: NetworkErrorException) {
+                Timber.d(ne)
+                _errorMessage.value = when (ne.message) {
+                    "HTTP 503 Service Unavailable" -> ErrorMessage.SERVICE_UNAVAILABLE
+                    else -> ErrorMessage.UNKNOWN_ERROR
+                }
             } catch (t: Throwable) {
                 Timber.d(t)
                 _errorMessage.value = ErrorMessage.UNKNOWN_ERROR
