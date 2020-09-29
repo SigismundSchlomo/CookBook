@@ -13,7 +13,7 @@ interface RecipesNetworkService {
     suspend fun getRecipes(): Response<List<Recipe>>
 
     @POST("/recipes")
-    suspend fun postRecipe(recipe: Recipe)
+    suspend fun postRecipe(@Body recipe: Recipe)
 
     //DELETE
     @HTTP(method = "DELETE", path = "/recipes", hasBody = true)
