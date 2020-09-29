@@ -38,6 +38,8 @@ class RecipeListAdapter :
 
         fun bind(recipe: Recipe) {
             itemView.itemHeader.text = recipe.header
+            itemView.recipeBody.text = recipe.header
         }
+
     }
 }
