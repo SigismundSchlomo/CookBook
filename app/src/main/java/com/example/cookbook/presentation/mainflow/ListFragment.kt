@@ -104,6 +104,7 @@ class ListFragment : Fragment() {
                 ErrorMessage.DATA_FROM_DATABASE -> R.string.data_from_database
             }
             showErrorMessage(messageResource)
+            refreshLayout.isRefreshing = false
         }
 
     }
