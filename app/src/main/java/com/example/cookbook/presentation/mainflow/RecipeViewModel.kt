@@ -1,5 +1,6 @@
 package com.example.cookbook.presentation.mainflow
 
+import android.accounts.NetworkErrorException
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -67,12 +68,15 @@ class RecipeViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 _recipesLiveData.value = interactor.loadRecipesFromNetwork()
-            } catch (t: Throwable) {
-                Timber.d(t)
-                _errorMessage.value = when (t.message) {
+            } catch (ne: NetworkErrorException) {
+                Timber.d(ne)
+                _errorMessage.value = when (ne.message) {
                     "HTTP 503 Service Unavailable" -> ErrorMessage.SERVICE_UNAVAILABLE
                     else -> ErrorMessage.UNKNOWN_ERROR
                 }
+            } catch (t: Throwable) {
+                Timber.d(t)
+                _errorMessage.value = ErrorMessage.UNKNOWN_ERROR
             }
         }
     }
