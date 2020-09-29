@@ -6,4 +6,5 @@ interface RecipeRepository {
     suspend fun getRecipes(): List<Recipe>
     suspend fun createRecipe(header: String, body: String)
     suspend fun getFromDatabase(): List<Recipe>
+    suspend fun deleteRecipe(recipe: Recipe)
 }

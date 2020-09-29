@@ -25,4 +25,9 @@ class RecipeInteractor @Inject constructor(
     suspend fun loadRecipesFromDatabase(): List<Recipe> {
         return recipeRepository.getFromDatabase()
     }
+
+    suspend fun deleteRecipe(recipe: Recipe) {
+        recipeRepository.deleteRecipe(recipe)
+    }
+
 }

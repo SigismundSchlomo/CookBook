@@ -10,9 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
+import com.example.cookbook.domain.models.Recipe
 import com.example.cookbook.presentation.ErrorMessage
 import com.example.cookbook.utils.ConnectivityManagerWrapper
 import com.google.android.material.snackbar.Snackbar
@@ -28,8 +30,7 @@ class ListFragment : Fragment() {
     @Inject
     lateinit var connectivityManagerWrapper: ConnectivityManagerWrapper
 
-    private val recipeAdapter =
-        RecipeListAdapter()
+    private val recipeAdapter = RecipeListAdapter()
 
     companion object {
         fun newInstance(): ListFragment {
@@ -70,6 +71,9 @@ class ListFragment : Fragment() {
             adapter = recipeAdapter
         }
 
+        val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(this::deleteRecipe))
+        itemTouchHelper.attachToRecyclerView(recipeListView)
+
         mainAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.logout -> {
@@ -93,7 +97,7 @@ class ListFragment : Fragment() {
         }
 
         viewModel.recipesLiveData.observe(viewLifecycleOwner) {
-            recipeAdapter.items = it
+            recipeAdapter.items = (it as MutableList<Recipe>)
             refreshLayout.isRefreshing = false
         }
 
@@ -111,6 +115,12 @@ class ListFragment : Fragment() {
 
     private fun showErrorMessage(stringResource: Int) {
         Snackbar.make(requireView(), stringResource, Snackbar.LENGTH_SHORT).show()
+    }
+
+    private fun deleteRecipe(position: Int) {
+        val recipe = recipeAdapter.items[position]
+        viewModel.deleteRecipe(recipe)
+        recipeAdapter.removeAt(position)
     }
 
 }

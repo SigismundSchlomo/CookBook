@@ -12,11 +12,16 @@ import kotlinx.android.synthetic.main.item_view_recipe.view.*
 class RecipeListAdapter :
     RecyclerView.Adapter<RecipeListAdapter.ViewHolder>() {
 
-    var items = listOf<Recipe>()
+    var items = mutableListOf<Recipe>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
+
+    fun removeAt(position: Int) {
+        items.removeAt(position)
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(

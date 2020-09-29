@@ -31,4 +31,9 @@ class RecipeRepositoryImpl @Inject constructor(
         return db.getAll()
     }
 
+    override suspend fun deleteRecipe(recipe: Recipe) {
+        db.delete(recipe)
+        recipesNetworkService.deleteRecipe(recipe.id.toString())
+    }
+
 }

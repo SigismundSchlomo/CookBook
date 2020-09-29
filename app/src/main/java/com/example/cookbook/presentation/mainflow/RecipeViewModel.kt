@@ -48,6 +48,16 @@ class RecipeViewModel @Inject constructor(
         }
     }
 
+    fun deleteRecipe(recipe: Recipe) {
+        viewModelScope.launch {
+            try {
+                interactor.deleteRecipe(recipe)
+            } catch (t: Throwable) {
+                Timber.d(t)
+            }
+        }
+    }
+
     fun logout() {
         interactor.logoutUser()
         Timber.d("Successfully logout")
@@ -74,7 +84,6 @@ class RecipeViewModel @Inject constructor(
         }
     }
 
-    //TODO: Expand functionality to delete recipes
     //TODO: Expand functionality to update recipes
 
 }
