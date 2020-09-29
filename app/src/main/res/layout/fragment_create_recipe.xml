@@ -35,16 +35,17 @@
 
             <EditText
                 android:id="@+id/headerEditText"
-                style="@style/RecipeHeaderEditor"
+                style="@style/RecipeHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="no"
+                android:inputType="text"
                 android:background="@android:color/transparent"
                 android:hint="@string/header_edittext_hint" />
 
             <EditText
                 android:id="@+id/bodyEditText"
-                style="@style/RecipeBodyEditor"
+                style="@style/RecipeBody"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:autofillHints="no"

@@ -27,6 +27,8 @@
     <string name="recipe_body_edittext_hint" translatable="true">Describe your recipe</string>
     <string name="logout">Logout</string>
     <string name="logout_menu_item_description">Logout from account</string>
+    <string name="ingredients_list_label">Ingredients</string>
+    <string name="steps_list_label">Steps</string>
 
 
 </resources>
