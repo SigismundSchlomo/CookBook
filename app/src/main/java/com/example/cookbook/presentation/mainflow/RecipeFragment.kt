@@ -1,9 +1,13 @@
 package com.example.cookbook.presentation.mainflow
 
+import android.graphics.Color
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.cookbook.R
 import com.example.cookbook.domain.models.Recipe
@@ -35,6 +39,21 @@ class RecipeFragment : Fragment() {
         headerTextView.text = recipe.header
         bodyTextView.text = recipe.body
 
+
+    }
+
+    private fun addItemToList(layout: LinearLayout, message: String) {
+        val textView = TextView(requireContext())
+        textView.apply {
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            text = message
+            setTextSize(TypedValue.COMPLEX_UNIT_SP, 15f)
+            setTextColor(Color.BLACK)
+        }
+        layout.addView(textView)
     }
 
 }
