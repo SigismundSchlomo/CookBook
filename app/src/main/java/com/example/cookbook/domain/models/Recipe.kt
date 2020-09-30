@@ -13,7 +13,7 @@ data class Recipe(
     @Json(name = "body")
     val body: String,
     @Json(name = "ingredients")
-    val ingredients: List<Ingredient>,
+    val ingredients: List<Ingredient> = emptyList(),
     @Json(name = "cookingSteps")
-    val cookingSteps: List<CookingStep>
+    val cookingSteps: List<CookingStep> = emptyList()
 )
