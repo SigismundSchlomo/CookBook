@@ -1,7 +1,7 @@
 package com.example.cookbook.data
 
 import android.accounts.NetworkErrorException
-import com.example.cookbook.data.db.RecipeDao
+import com.example.cookbook.data.db.RecipeDbDataSource
 import com.example.cookbook.data.network.RecipesNetworkService
 import com.example.cookbook.domain.RecipeRepository
 import com.example.cookbook.domain.models.Recipe
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class RecipeRepositoryImpl @Inject constructor(
     private val recipesNetworkService: RecipesNetworkService,
-    private val db: RecipeDao
+    private val db: RecipeDbDataSource
 ) : RecipeRepository {
 
     override suspend fun getRecipes(): List<Recipe> {
@@ -20,7 +20,7 @@ class RecipeRepositoryImpl @Inject constructor(
 
         if (response.isSuccessful) {
             val recipes = response.body()!!
-            withContext(Dispatchers.IO) { db.insertAll(recipes) }
+            withContext(Dispatchers.IO) { db.saveAll(recipes) }
             return recipes
         } else {
             val error = response.errorBody().toString()
@@ -38,11 +38,11 @@ class RecipeRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getFromDatabase(): List<Recipe> {
-        return db.getAll()
+        return db.getRecipes()
     }
 
     override suspend fun deleteRecipe(recipe: Recipe) {
-        db.delete(recipe)
+        db.deleteRecipe(recipe)
         recipesNetworkService.deleteRecipe(recipe)
     }
 

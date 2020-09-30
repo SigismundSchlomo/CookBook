@@ -9,6 +9,10 @@ class RecipeDbDataSource(private val dao: RecipeDao) : RecipeDataSource {
         return dao.getAll().map { it.toRecipe() }
     }
 
+    override suspend fun saveAll(recipes: List<Recipe>) {
+        recipes.forEach { saveRecipe(it) }
+    }
+
     override suspend fun saveRecipe(recipe: Recipe) {
         dao.insertRecipe(recipe.toDbRecipe())
         dao.insertIngredients(recipe.ingredients.map { it.toDbIngredient() })

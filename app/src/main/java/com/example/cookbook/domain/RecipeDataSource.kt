@@ -6,6 +6,7 @@ interface RecipeDataSource {
 
     suspend fun getRecipes(): List<Recipe>
     suspend fun saveRecipe(recipe: Recipe)
+    suspend fun saveAll(recipes: List<Recipe>)
     suspend fun deleteRecipe(recipe: Recipe)
     suspend fun updateRecipe(recipe: Recipe)
 
