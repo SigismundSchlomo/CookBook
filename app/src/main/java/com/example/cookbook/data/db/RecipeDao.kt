@@ -23,7 +23,22 @@ interface RecipeDao {
     suspend fun insertCookingSteps(cookingSteps: List<DbCookingStep>)
 
     @Delete
-    suspend fun delete(recipe: DbRecipe)
+    suspend fun deleteRecipe(recipe: DbRecipe)
+
+    @Delete
+    suspend fun deleteIngredients(ingredients: List<DbIngredient>)
+
+    @Delete
+    suspend fun deleteCookingSteps(cookingSteps: List<DbCookingStep>)
+
+    @Update
+    suspend fun updateRecipe(recipe: DbRecipe)
+
+    @Update
+    suspend fun updateIngredients(ingredients: List<DbIngredient>)
+
+    @Update
+    suspend fun updateCookingSteps(cookingSteps: List<DbCookingStep>)
 
     @Query("DELETE FROM DbRecipe")
     suspend fun nukeTable()
