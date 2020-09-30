@@ -1,9 +1,9 @@
 package com.example.cookbook.di.mainflowcomponent
 
 import com.example.cookbook.BuildConfig
-import com.example.cookbook.data.network.RecipesNetworkService
-import com.example.cookbook.data.network.TokenInterceptor
-import com.example.cookbook.data.network.UserHeaderInterceptor
+import com.example.cookbook.data.network.recipeservice.RecipesNetworkService
+import com.example.cookbook.data.network.recipeservice.TokenInterceptor
+import com.example.cookbook.data.network.recipeservice.UserHeaderInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor

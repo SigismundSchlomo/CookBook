@@ -1,7 +1,7 @@
 package com.example.cookbook.di.appcomponent
 
 import com.example.cookbook.BuildConfig
-import com.example.cookbook.data.network.AuthNetworkService
+import com.example.cookbook.data.network.auth.AuthNetworkService
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
