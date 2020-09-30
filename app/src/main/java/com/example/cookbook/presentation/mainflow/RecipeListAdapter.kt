@@ -12,6 +12,8 @@ import kotlinx.android.synthetic.main.item_view_recipe.view.*
 class RecipeListAdapter :
     RecyclerView.Adapter<RecipeListAdapter.ViewHolder>() {
 
+    var listener: ((Recipe) -> Unit)? = null
+
     var items = mutableListOf<Recipe>()
         set(value) {
             field = value
@@ -38,12 +40,19 @@ class RecipeListAdapter :
         holder.bind(items[position])
     }
 
-    class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
+    inner class ViewHolder(override val containerView: View) :
+        RecyclerView.ViewHolder(containerView),
         LayoutContainer {
+
+        init {
+            itemView.setOnClickListener {
+                listener?.invoke(items[adapterPosition])
+            }
+        }
 
         fun bind(recipe: Recipe) {
             itemView.itemHeader.text = recipe.header
-            itemView.recipeBody.text = recipe.header
+            itemView.recipeBody.text = recipe.body
         }
 
     }

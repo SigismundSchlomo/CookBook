@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookbook.R
@@ -66,6 +66,10 @@ class ListFragment : Fragment() {
 
         viewModel.loadRecipes()
 
+        recipeAdapter.listener = { recipe ->
+            navigateToRecipeFragment(recipe)
+        }
+
         recipeListView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = recipeAdapter
@@ -96,21 +100,23 @@ class ListFragment : Fragment() {
             viewModel.refreshRecipes()
         }
 
-        viewModel.recipesLiveData.observe(viewLifecycleOwner) {
-            recipeAdapter.items = (it as MutableList<Recipe>)
-            refreshLayout.isRefreshing = false
-        }
+        viewModel.recipesLiveData.observe(viewLifecycleOwner,
+            Observer<List<Recipe>> { list ->
+                recipeAdapter.items = (list as MutableList<Recipe>)
+                refreshLayout.isRefreshing = false
+            })
 
-        viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
-            val messageResource = when (errorMessage) {
-                ErrorMessage.SERVICE_UNAVAILABLE -> R.string.service_unavailable
-                ErrorMessage.UNKNOWN_ERROR -> R.string.unknown_error
-                ErrorMessage.DATA_FROM_DATABASE -> R.string.data_from_database
-            }
-            showErrorMessage(messageResource)
-            refreshLayout.isRefreshing = false
-        }
-
+        viewModel.errorMessage.observe(viewLifecycleOwner,
+            Observer<ErrorMessage> { errorMessage ->
+                val messageResource = when (errorMessage) {
+                    ErrorMessage.SERVICE_UNAVAILABLE -> R.string.service_unavailable
+                    ErrorMessage.UNKNOWN_ERROR -> R.string.unknown_error
+                    ErrorMessage.DATA_FROM_DATABASE -> R.string.data_from_database
+                    else -> R.string.unknown_error
+                }
+                showErrorMessage(messageResource)
+                refreshLayout.isRefreshing = false
+            })
     }
 
     private fun showErrorMessage(stringResource: Int) {
@@ -121,6 +127,13 @@ class ListFragment : Fragment() {
         val recipe = recipeAdapter.items[position]
         viewModel.deleteRecipe(recipe)
         recipeAdapter.removeAt(position)
+    }
+
+    private fun navigateToRecipeFragment(recipe: Recipe) {
+        activity?.supportFragmentManager?.commit {
+            addToBackStack(null)
+            replace(R.id.main_fragment_container, RecipeFragment.newInstance(recipe))
+        }
     }
 
 }

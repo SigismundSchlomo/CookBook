@@ -2,7 +2,7 @@ package com.example.cookbook.di.appcomponent
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.cookbook.data.network.AuthNetworkImpl
+import com.example.cookbook.data.network.auth.AuthNetworkImpl
 import com.example.cookbook.di.ViewModelFactory
 import com.example.cookbook.di.ViewModelKey
 import com.example.cookbook.domain.AuthNetwork
