@@ -1,4 +1,4 @@
-package com.example.cookbook.data.network
+package com.example.cookbook.data.network.recipeservice
 
 import android.accounts.NetworkErrorException
 import com.example.cookbook.domain.RecipeDataSource

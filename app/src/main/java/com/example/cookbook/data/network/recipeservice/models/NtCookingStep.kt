@@ -1,4 +1,4 @@
-package com.example.cookbook.data.network.models
+package com.example.cookbook.data.network.recipeservice.models
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

@@ -1,8 +1,8 @@
-package com.example.cookbook.data.network
+package com.example.cookbook.data.network.recipeservice
 
-import com.example.cookbook.data.network.models.NtCookingStep
-import com.example.cookbook.data.network.models.NtIngredient
-import com.example.cookbook.data.network.models.NtRecipe
+import com.example.cookbook.data.network.recipeservice.models.NtCookingStep
+import com.example.cookbook.data.network.recipeservice.models.NtIngredient
+import com.example.cookbook.data.network.recipeservice.models.NtRecipe
 import com.example.cookbook.domain.models.CookingStep
 import com.example.cookbook.domain.models.Ingredient
 import com.example.cookbook.domain.models.Recipe

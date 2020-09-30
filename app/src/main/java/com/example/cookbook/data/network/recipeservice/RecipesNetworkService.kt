@@ -1,6 +1,6 @@
-package com.example.cookbook.data.network
+package com.example.cookbook.data.network.recipeservice
 
-import com.example.cookbook.data.network.models.NtRecipe
+import com.example.cookbook.data.network.recipeservice.models.NtRecipe
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
