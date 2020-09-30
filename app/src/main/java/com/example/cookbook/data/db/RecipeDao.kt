@@ -1,21 +1,31 @@
 package com.example.cookbook.data.db
 
 import androidx.room.*
-import com.example.cookbook.domain.models.Recipe
+import com.example.cookbook.data.db.models.DbCookingStep
+import com.example.cookbook.data.db.models.DbIngredient
+import com.example.cookbook.data.db.models.DbRecipe
+import com.example.cookbook.data.db.models.RecipeWithReferences
 
-@Dao()
+@Dao
 interface RecipeDao {
 
-    @Query("SELECT * FROM Recipe")
-    suspend fun getAll(): List<Recipe>
+    @Transaction
+    @Query("SELECT * FROM DbRecipe")
+    suspend fun getAll(): List<RecipeWithReferences>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(recipes: List<Recipe>)
+    suspend fun insertRecipe(recipe: DbRecipe)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertIngredients(ingredients: List<DbIngredient>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertCookingSteps(cookingSteps: List<DbCookingStep>)
 
     @Delete
-    suspend fun delete(recipe: Recipe)
+    suspend fun delete(recipe: DbRecipe)
 
-    @Query("DELETE FROM Recipe")
+    @Query("DELETE FROM DbRecipe")
     suspend fun nukeTable()
 
 }
