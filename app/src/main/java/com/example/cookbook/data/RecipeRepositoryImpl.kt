@@ -1,31 +1,25 @@
 package com.example.cookbook.data
 
-import android.accounts.NetworkErrorException
 import com.example.cookbook.data.db.RecipeDbDataSource
-import com.example.cookbook.data.network.RecipesNetworkService
+import com.example.cookbook.data.network.RecipeNetworkDataSource
 import com.example.cookbook.domain.RecipeRepository
 import com.example.cookbook.domain.models.Recipe
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import timber.log.Timber
 import javax.inject.Inject
 
 class RecipeRepositoryImpl @Inject constructor(
-    private val recipesNetworkService: RecipesNetworkService,
+    private val network: RecipeNetworkDataSource,
     private val db: RecipeDbDataSource
 ) : RecipeRepository {
 
     override suspend fun getRecipes(): List<Recipe> {
-        val response = recipesNetworkService.getRecipes()
-
-        if (response.isSuccessful) {
-            val recipes = response.body()!!
+        try {
+            val recipes = network.getRecipes()
             withContext(Dispatchers.IO) { db.saveAll(recipes) }
             return recipes
-        } else {
-            val error = response.errorBody().toString()
-            Timber.d(error)
-            throw NetworkErrorException(error)
+        } catch (t: Throwable) {
+            throw t
         }
     }
 
@@ -34,7 +28,7 @@ class RecipeRepositoryImpl @Inject constructor(
             header = header,
             body = body
         )
-        recipesNetworkService.postRecipe(recipe)
+        network.saveRecipe(recipe)
     }
 
     override suspend fun getFromDatabase(): List<Recipe> {
@@ -43,7 +37,7 @@ class RecipeRepositoryImpl @Inject constructor(
 
     override suspend fun deleteRecipe(recipe: Recipe) {
         db.deleteRecipe(recipe)
-        recipesNetworkService.deleteRecipe(recipe)
+        network.deleteRecipe(recipe)
     }
 
 }
