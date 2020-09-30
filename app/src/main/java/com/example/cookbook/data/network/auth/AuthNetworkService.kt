@@ -1,7 +1,7 @@
-package com.example.cookbook.data.network
+package com.example.cookbook.data.network.auth
 
-import com.example.cookbook.data.network.models.AuthRequestData
-import com.example.cookbook.data.network.models.AuthResponseData
+import com.example.cookbook.data.network.auth.models.AuthRequestData
+import com.example.cookbook.data.network.auth.models.AuthResponseData
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST

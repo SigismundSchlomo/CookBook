@@ -1,7 +1,7 @@
-package com.example.cookbook.data.network
+package com.example.cookbook.data.network.auth
 
 import android.accounts.NetworkErrorException
-import com.example.cookbook.data.network.models.AuthRequestData
+import com.example.cookbook.data.network.auth.models.AuthRequestData
 import com.example.cookbook.domain.AuthNetwork
 import com.example.cookbook.domain.models.Token
 import com.example.cookbook.domain.models.User
