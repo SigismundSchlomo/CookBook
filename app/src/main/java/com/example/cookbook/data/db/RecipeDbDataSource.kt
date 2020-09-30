@@ -2,8 +2,9 @@ package com.example.cookbook.data.db
 
 import com.example.cookbook.domain.RecipeDataSource
 import com.example.cookbook.domain.models.Recipe
+import javax.inject.Inject
 
-class RecipeDbDataSource(private val dao: RecipeDao) : RecipeDataSource {
+class RecipeDbDataSource @Inject constructor(private val dao: RecipeDao) : RecipeDataSource {
 
     override suspend fun getRecipes(): List<Recipe> {
         return dao.getAll().map { it.toRecipe() }

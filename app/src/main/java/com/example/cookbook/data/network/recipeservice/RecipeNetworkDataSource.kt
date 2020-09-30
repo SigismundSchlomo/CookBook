@@ -4,8 +4,9 @@ import android.accounts.NetworkErrorException
 import com.example.cookbook.domain.RecipeDataSource
 import com.example.cookbook.domain.models.Recipe
 import timber.log.Timber
+import javax.inject.Inject
 
-class RecipeNetworkDataSource(private val networkService: RecipesNetworkService) :
+class RecipeNetworkDataSource @Inject constructor(private val networkService: RecipesNetworkService) :
     RecipeDataSource {
 
     override suspend fun getRecipes(): List<Recipe> {
