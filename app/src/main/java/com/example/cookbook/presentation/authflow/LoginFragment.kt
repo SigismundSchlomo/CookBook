@@ -49,9 +49,11 @@ class LoginFragment : Fragment() {
 
         val backward = MaterialSharedAxis(MaterialSharedAxis.X, false)
         reenterTransition = backward
-
+        enterTransition = backward
         val forward = MaterialSharedAxis(MaterialSharedAxis.X, true)
         exitTransition = forward
+        returnTransition = forward
+
 
     }
 
