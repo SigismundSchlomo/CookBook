@@ -7,12 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
+import com.example.cookbook.domain.models.CookingStep
+import com.example.cookbook.domain.models.Ingredient
 import com.example.cookbook.presentation.mainflow.MainActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.transition.MaterialSharedAxis
 import kotlinx.android.synthetic.main.fragment_create_recipe.*
@@ -83,6 +85,22 @@ class CreateRecipeFragment : Fragment() {
             pickStep()
         }
 
+        viewModel.ingredients.observe(viewLifecycleOwner,
+            Observer<MutableList<Ingredient>> { list ->
+                list.forEach { ingredient ->
+                    //TODO: add item to list
+                }
+            }
+        )
+
+        viewModel.cookingSteps.observe(viewLifecycleOwner,
+            Observer<MutableList<CookingStep>> { list ->
+                list.forEach { step ->
+                    //TODO: add item to list
+                }
+            }
+        )
+
     }
 
     private fun createRecipe() {
@@ -93,10 +111,6 @@ class CreateRecipeFragment : Fragment() {
 
     private fun navigateBack() {
         activity?.supportFragmentManager?.popBackStack()
-    }
-
-    private fun showSnackbar(message: String) {
-        Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show()
     }
 
     @SuppressLint("InflateParams")

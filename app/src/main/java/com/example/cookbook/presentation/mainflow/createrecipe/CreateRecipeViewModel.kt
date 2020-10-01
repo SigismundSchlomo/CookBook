@@ -20,8 +20,13 @@ class CreateRecipeViewModel @Inject constructor(
     val errorMessage: LiveData<ErrorMessage>
         get() = _errorMessage
 
-    private val ingredients = mutableListOf<Ingredient>()
-    private val cookingSteps = mutableListOf<CookingStep>()
+    private val _ingredients = MutableLiveData<MutableList<Ingredient>>(mutableListOf())
+    val ingredients: LiveData<MutableList<Ingredient>>
+        get() = _ingredients
+
+    private val _cookingSteps = MutableLiveData<MutableList<CookingStep>>(mutableListOf())
+    val cookingSteps: LiveData<MutableList<CookingStep>>
+        get() = _cookingSteps
 
     fun createRecipe(header: String, body: String) {
         viewModelScope.launch {
@@ -29,8 +34,8 @@ class CreateRecipeViewModel @Inject constructor(
                 val recipe = Recipe(
                     header = header,
                     body = body,
-                    ingredients = ingredients,
-                    cookingSteps = cookingSteps
+                    ingredients = _ingredients.value?.toList()!!,
+                    cookingSteps = _cookingSteps.value?.toList()!!
                 )
                 interactor.createRecipe(recipe)
             } catch (t: Throwable) {
@@ -53,7 +58,7 @@ class CreateRecipeViewModel @Inject constructor(
 
     fun createIngredient(name: String, amount: String) {
         val userId = interactor.getCurrentUser().id
-        ingredients.add(
+        _ingredients.value?.add(
             Ingredient(
                 userId = userId,
                 name = name,
@@ -64,7 +69,7 @@ class CreateRecipeViewModel @Inject constructor(
     }
 
     fun createCookingStep(description: String) {
-        cookingSteps.add(CookingStep(description = description))
+        _cookingSteps.value?.add(CookingStep(description = description))
     }
 
     //TODO: Expand functionality to update recipes
