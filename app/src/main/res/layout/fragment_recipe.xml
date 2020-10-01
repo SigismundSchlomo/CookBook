@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -27,73 +26,108 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/standard_margin"
+            android:layout_marginEnd="@dimen/standard_margin"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/headerTextView"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/headerEditText"
+                style="@style/RecipeHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/half_margin"
-                android:layout_marginTop="@dimen/half_margin"
-                android:layout_marginEnd="@dimen/half_margin"
-                android:textSize="@dimen/header_text_size"
-                tools:text="Header" />
+                android:hint="@string/header_edittext_hint"
+                app:endIconMode="clear_text">
 
-            <TextView
-                android:id="@+id/bodyTextView"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/bodyEditText"
+                style="@style/RecipeBody"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/half_margin"
-                android:layout_marginEnd="@dimen/half_margin"
+                android:hint="@string/recipe_body_edittext_hint"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ingredientListLabel"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/half_margin"
-                android:textSize="@dimen/recipe_body_text_size"
-                tools:text="@string/lorem_ipsum_280" />
-
-            <TextView
-                android:id="@+id/ingredientsListLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/half_margin"
                 android:layout_marginTop="@dimen/half_margin"
-                android:layout_marginEnd="@dimen/half_margin"
-                android:text="@string/ingredients_list_label"
-                android:textSize="17sp"
-                app:drawableEndCompat="@drawable/ic_arrow_down_24" />
+                android:hint="@string/ingredients_list_label"
+                android:textColorHint="@android:color/black"
+                app:endIconDrawable="@drawable/ic_arrow_down_24"
+                app:endIconMode="custom">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:id="@+id/ingredientContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <!-- Add list -->
+                android:orientation="vertical"
+                android:visibility="gone">
 
             </LinearLayout>
 
-            <TextView
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/cookingStepsListLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/half_margin"
                 android:layout_marginTop="@dimen/half_margin"
-                android:layout_marginEnd="@dimen/half_margin"
-                android:text="@string/steps_list_label"
-                android:textSize="17sp"
-                app:drawableEndCompat="@drawable/ic_arrow_down_24" />
+                android:hint="@string/steps_list_label"
+                android:textColorHint="@android:color/black"
+                app:endIconDrawable="@drawable/ic_arrow_down_24"
+                app:endIconMode="custom">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:id="@+id/cookingStepsContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <!-- Add list -->
+                android:orientation="vertical"
+                android:visibility="gone">
 
             </LinearLayout>
 
         </LinearLayout>
-
 
     </androidx.core.widget.NestedScrollView>
 
