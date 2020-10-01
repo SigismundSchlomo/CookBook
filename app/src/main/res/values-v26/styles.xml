@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="RecipeHeader" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+
+        <item name="android:layout_marginTop">@dimen/half_margin</item>
+        <item name="android:layout_marginBottom">@dimen/half_margin</item>
+        <item name="android:textSize">@dimen/header_text_size</item>
+        <item name="android:inputType">text</item>
+        <item name="android:autofillHints">no</item>
+
+    </style>
+
+    <style name="RecipeBody" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+
+        <item name="android:textSize">@dimen/recipe_body_text_size</item>
+        <item name="android:layout_marginBottom">@dimen/standard_margin</item>
+        <item name="android:inputType">text</item>
+        <item name="android:autofillHints">no</item>
+
+
+    </style>
+</resources>

@@ -81,7 +81,7 @@ class RegisterFragment : Fragment() {
         navigateToLoginButton.setOnClickListener {
             viewModel.savedEmail = emailEditText.text.toString()
             activity?.supportFragmentManager?.commit {
-                replace(R.id.auth_fragment_container, RegisterFragment.newInstance())
+                replace(R.id.auth_fragment_container, LoginFragment.newInstance())
             }
         }
 

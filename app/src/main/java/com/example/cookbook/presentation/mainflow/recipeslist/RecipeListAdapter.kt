@@ -1,4 +1,4 @@
-package com.example.cookbook.presentation.mainflow
+package com.example.cookbook.presentation.mainflow.recipeslist
 
 import android.view.LayoutInflater
 import android.view.View

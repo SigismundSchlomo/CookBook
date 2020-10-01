@@ -1,4 +1,4 @@
-package com.example.cookbook.presentation.mainflow
+package com.example.cookbook.presentation.mainflow.recipe
 
 import android.graphics.Color
 import android.os.Bundle
@@ -11,7 +11,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.cookbook.R
 import com.example.cookbook.domain.models.Recipe
-import kotlinx.android.synthetic.main.fragment_recipe.*
 
 class RecipeFragment : Fragment() {
 
@@ -35,9 +34,6 @@ class RecipeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        headerTextView.text = recipe.header
-        bodyTextView.text = recipe.body
 
 
     }

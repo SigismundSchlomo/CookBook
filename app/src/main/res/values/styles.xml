@@ -16,19 +16,35 @@
 
     </style>
 
-    <style name="RecipeBody" parent="Widget.AppCompat.EditText">
+    <style name="RecipeBody" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
 
         <item name="android:textSize">@dimen/recipe_body_text_size</item>
-        <item name="android:gravity">top|start</item>
         <item name="android:layout_marginBottom">@dimen/standard_margin</item>
+        <item name="android:inputType">text</item>
 
     </style>
 
-    <style name="RecipeHeader" parent="Widget.AppCompat.EditText">
+    <style name="RecipeHeader" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
 
         <item name="android:layout_marginTop">@dimen/half_margin</item>
         <item name="android:layout_marginBottom">@dimen/half_margin</item>
         <item name="android:textSize">@dimen/header_text_size</item>
+        <item name="android:inputType">text</item>
+
+    </style>
+
+    <style name="IngredientListLabel" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+
+        <item name="android:hint">@string/ingredients_list_label</item>
+        <item name="android:textColorHint">@android:color/black</item>
+
+    </style>
+
+    <style name="StepsListLabel" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+
+        <item name="android:layout_marginTop">@dimen/standard_margin</item>
+        <item name="android:hint">@string/steps_list_label</item>
+        <item name="android:textColorHint">@android:color/black</item>
 
     </style>
 

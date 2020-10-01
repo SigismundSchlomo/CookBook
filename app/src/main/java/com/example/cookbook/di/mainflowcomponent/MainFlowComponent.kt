@@ -3,8 +3,8 @@ package com.example.cookbook.di.mainflowcomponent
 import android.content.Context
 import com.example.cookbook.di.ConnectivityModule
 import com.example.cookbook.di.UserModule
-import com.example.cookbook.presentation.mainflow.CreateRecipeFragment
-import com.example.cookbook.presentation.mainflow.ListFragment
+import com.example.cookbook.presentation.mainflow.recipe.CreateRecipeFragment
+import com.example.cookbook.presentation.mainflow.recipeslist.ListFragment
 import dagger.BindsInstance
 import dagger.Component
 

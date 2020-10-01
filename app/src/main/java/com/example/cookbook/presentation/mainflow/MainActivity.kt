@@ -8,6 +8,7 @@ import com.example.cookbook.R
 import com.example.cookbook.di.mainflowcomponent.DaggerMainFlowComponent
 import com.example.cookbook.di.mainflowcomponent.MainFlowComponent
 import com.example.cookbook.presentation.authflow.AuthActivity
+import com.example.cookbook.presentation.mainflow.recipeslist.ListFragment
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
