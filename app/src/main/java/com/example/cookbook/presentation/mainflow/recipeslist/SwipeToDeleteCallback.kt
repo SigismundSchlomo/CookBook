@@ -1,4 +1,4 @@
-package com.example.cookbook.presentation.mainflow
+package com.example.cookbook.presentation.mainflow.recipeslist
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView

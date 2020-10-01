@@ -1,4 +1,4 @@
-package com.example.cookbook.presentation.mainflow
+package com.example.cookbook.presentation.mainflow.recipeslist
 
 import android.content.Context
 import android.os.Bundle
@@ -15,6 +15,9 @@ import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
 import com.example.cookbook.domain.models.Recipe
 import com.example.cookbook.presentation.ErrorMessage
+import com.example.cookbook.presentation.mainflow.MainActivity
+import com.example.cookbook.presentation.mainflow.RecipeFragment
+import com.example.cookbook.presentation.mainflow.createrecipe.CreateRecipeFragment
 import com.example.cookbook.utils.ConnectivityManagerWrapper
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialSharedAxis

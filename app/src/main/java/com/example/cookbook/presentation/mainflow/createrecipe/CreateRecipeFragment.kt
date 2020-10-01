@@ -1,4 +1,4 @@
-package com.example.cookbook.presentation.mainflow
+package com.example.cookbook.presentation.mainflow.createrecipe
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
+import com.example.cookbook.presentation.mainflow.MainActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
@@ -21,7 +22,7 @@ class CreateRecipeFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    lateinit var viewModel: RecipeViewModel //TODO: Create own viewModel to the class
+    lateinit var viewModel: CreateRecipeViewModel
 
     companion object {
         fun newInstance(): CreateRecipeFragment {
@@ -61,6 +62,7 @@ class CreateRecipeFragment : Fragment() {
             setNavigationOnClickListener {
                 navigateBack()
             }
+
             setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.done -> {

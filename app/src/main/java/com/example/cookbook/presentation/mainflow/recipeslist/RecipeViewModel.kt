@@ -1,4 +1,4 @@
-package com.example.cookbook.presentation.mainflow
+package com.example.cookbook.presentation.mainflow.recipeslist
 
 import android.accounts.NetworkErrorException
 import androidx.lifecycle.LiveData
@@ -38,23 +38,14 @@ class RecipeViewModel @Inject constructor(
         }
     }
 
-    fun createRecipe(header: String, body: String) {
-        viewModelScope.launch {
-            try {
-                interactor.createRecipe(header, body)
-            } catch (t: Throwable) {
-                Timber.d(t)
-                _errorMessage.value = ErrorMessage.UNKNOWN_ERROR
-            }
-        }
-    }
-
+    //Delete after refactoring
     fun deleteRecipe(recipe: Recipe) {
         viewModelScope.launch {
             try {
                 interactor.deleteRecipe(recipe)
             } catch (t: Throwable) {
                 Timber.d(t)
+
             }
         }
     }
@@ -88,6 +79,5 @@ class RecipeViewModel @Inject constructor(
         }
     }
 
-    //TODO: Expand functionality to update recipes
 
 }
