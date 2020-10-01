@@ -29,6 +29,7 @@
     <string name="logout_menu_item_description">Logout from account</string>
     <string name="ingredients_list_label">Ingredients</string>
     <string name="steps_list_label">Steps</string>
+    <string name="drop_down_arrow_descr">Arrow to open drop down list</string>
 
 
 </resources>
