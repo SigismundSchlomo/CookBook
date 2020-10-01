@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/IngredientNameTextInput"
+        android:id="@+id/ingredientNameTextInput"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,14 +14,14 @@
         android:hint="@string/ingredient_name_hint">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/IngredientNameEditText"
+            android:id="@+id/ingredientNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/IngredientAmountTextInput"
+        android:id="@+id/ingredientAmountTextInput"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
         android:hint="@string/ingredient_amount_hint">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/IngredientAmountEditText"
+            android:id="@+id/ingredientAmountEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

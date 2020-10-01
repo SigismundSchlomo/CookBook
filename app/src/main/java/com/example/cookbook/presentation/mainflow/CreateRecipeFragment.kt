@@ -77,7 +77,7 @@ class CreateRecipeFragment : Fragment() {
         }
 
         cookingStepsListLabel.setEndIconOnClickListener {
-            //TODO: Show dialog fragment with step creation
+            pickStep()
         }
 
     }
@@ -99,18 +99,38 @@ class CreateRecipeFragment : Fragment() {
     @SuppressLint("InflateParams")
     private fun pickIngredient() {
         val dialogView =
-            LayoutInflater.from(requireContext()).inflate(R.layout.create_ingredient_dialog, null)
+            LayoutInflater.from(requireContext()).inflate(R.layout.dialog_create_ingredient, null)
         MaterialAlertDialogBuilder(requireContext()).apply {
-            setTitle("New Recipe")
+            setTitle("New Ingredient")
             setView(dialogView)
             setPositiveButton(android.R.string.ok) { _, _ ->
                 val nameInput =
-                    dialogView.findViewById<TextInputEditText>(R.id.IngredientNameEditText)
+                    dialogView.findViewById<TextInputEditText>(R.id.ingredientNameEditText)
                 val name = nameInput.text.toString()
                 val amountInput =
-                    dialogView.findViewById<TextInputEditText>(R.id.IngredientAmountEditText)
+                    dialogView.findViewById<TextInputEditText>(R.id.ingredientAmountEditText)
                 val amount = amountInput.text.toString()
                 //TODO: Add method to viewModel to create ingredient and store it
+            }
+            setNegativeButton(android.R.string.cancel) { dialog, _ ->
+                dialog.cancel()
+            }
+            show()
+        }
+    }
+
+    @SuppressLint("InflateParams")
+    private fun pickStep() {
+        val dialogView =
+            LayoutInflater.from(requireContext()).inflate(R.layout.dialog_create_step, null)
+        MaterialAlertDialogBuilder(requireContext()).apply {
+            setTitle("New Step")
+            setView(dialogView)
+            setPositiveButton(android.R.string.ok) { _, _ ->
+                val descriptionInput =
+                    dialogView.findViewById<TextInputEditText>(R.id.descriptionEditText)
+                val description = descriptionInput.text.toString()
+                //TODO: Create method int viewModel to create step and save it
             }
             setNegativeButton(android.R.string.cancel) { dialog, _ ->
                 dialog.cancel()

@@ -32,6 +32,7 @@
     <string name="drop_down_arrow_descr">Arrow to open drop down list</string>
     <string name="ingredient_name_hint">What ingredient?</string>
     <string name="ingredient_amount_hint">How much?</string>
+    <string name="description_input_label">What should be done?</string>
 
 
 </resources>
