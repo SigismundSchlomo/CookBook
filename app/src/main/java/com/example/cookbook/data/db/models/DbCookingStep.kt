@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class DbCookingStep(
-    @PrimaryKey val stepId: Int,
+    @PrimaryKey(autoGenerate = true) val stepId: Int,
     val recipeId: Int,
     val description: String
 )

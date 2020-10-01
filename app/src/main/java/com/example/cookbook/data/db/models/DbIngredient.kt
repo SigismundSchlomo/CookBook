@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class DbIngredient(
 
-    @PrimaryKey val ingredientId: Int,
+    @PrimaryKey(autoGenerate = true) val ingredientId: Int,
     val userId: Int,
     val recipeId: Int,
     val name: String,

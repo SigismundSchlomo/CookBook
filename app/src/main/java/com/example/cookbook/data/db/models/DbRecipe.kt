@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class DbRecipe(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     val recipeId: Int,
     val header: String,
     val body: String
