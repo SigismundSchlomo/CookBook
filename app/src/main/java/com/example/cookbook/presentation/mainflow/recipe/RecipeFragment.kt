@@ -1,4 +1,4 @@
-package com.example.cookbook.presentation.mainflow
+package com.example.cookbook.presentation.mainflow.recipe
 
 import android.graphics.Color
 import android.os.Bundle

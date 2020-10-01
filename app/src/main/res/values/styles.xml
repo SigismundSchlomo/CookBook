@@ -35,8 +35,6 @@
 
     <style name="IngredientListLabel" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
 
-        <item name="android:layout_marginTop">@dimen/half_margin</item>
-        <item name="android:layout_marginBottom">@dimen/standard_margin</item>
         <item name="android:hint">@string/ingredients_list_label</item>
         <item name="android:textColorHint">@android:color/black</item>
 
@@ -44,8 +42,7 @@
 
     <style name="StepsListLabel" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
 
-        <item name="android:layout_marginTop">@dimen/half_margin</item>
-        <item name="android:layout_marginBottom">@dimen/standard_margin</item>
+        <item name="android:layout_marginTop">@dimen/standard_margin</item>
         <item name="android:hint">@string/steps_list_label</item>
         <item name="android:textColorHint">@android:color/black</item>
 

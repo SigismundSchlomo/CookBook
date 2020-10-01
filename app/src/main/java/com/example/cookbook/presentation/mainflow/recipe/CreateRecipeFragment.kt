@@ -1,4 +1,4 @@
-package com.example.cookbook.presentation.mainflow.createrecipe
+package com.example.cookbook.presentation.mainflow.recipe
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
 import com.example.cookbook.domain.models.CookingStep
@@ -59,6 +60,18 @@ class CreateRecipeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val ingredientAdapter = IngredientAdapter()
+        ingredientContainer.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = ingredientAdapter
+        }
+
+        val cookingAdapter = CookingAdapter()
+        cookingStepsContainer.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = cookingAdapter
+        }
+
         topAppBar.apply {
             setNavigationIcon(R.drawable.ic_back_white_24)
             setNavigationOnClickListener {
@@ -87,17 +100,13 @@ class CreateRecipeFragment : Fragment() {
 
         viewModel.ingredients.observe(viewLifecycleOwner,
             Observer<MutableList<Ingredient>> { list ->
-                list.forEach { ingredient ->
-                    //TODO: add item to list
-                }
+                ingredientAdapter.ingredients = list
             }
         )
 
         viewModel.cookingSteps.observe(viewLifecycleOwner,
             Observer<MutableList<CookingStep>> { list ->
-                list.forEach { step ->
-                    //TODO: add item to list
-                }
+                cookingAdapter.cookingSteps = list
             }
         )
 

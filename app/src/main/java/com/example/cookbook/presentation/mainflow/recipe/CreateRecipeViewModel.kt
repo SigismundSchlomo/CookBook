@@ -1,4 +1,4 @@
-package com.example.cookbook.presentation.mainflow.createrecipe
+package com.example.cookbook.presentation.mainflow.recipe
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,6 +8,7 @@ import com.example.cookbook.domain.models.CookingStep
 import com.example.cookbook.domain.models.Ingredient
 import com.example.cookbook.domain.models.Recipe
 import com.example.cookbook.domain.usecases.RecipeInteractor
+import com.example.cookbook.utils.forceRefresh
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -66,10 +67,12 @@ class CreateRecipeViewModel @Inject constructor(
                 isInTheList = false
             )
         )
+        _ingredients.forceRefresh()
     }
 
     fun createCookingStep(description: String) {
         _cookingSteps.value?.add(CookingStep(description = description))
+        _cookingSteps.forceRefresh()
     }
 
     //TODO: Expand functionality to update recipes

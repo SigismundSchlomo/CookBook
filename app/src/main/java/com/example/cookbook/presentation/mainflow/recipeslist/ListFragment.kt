@@ -16,8 +16,8 @@ import com.example.cookbook.di.injectViewModel
 import com.example.cookbook.domain.models.Recipe
 import com.example.cookbook.presentation.ErrorMessage
 import com.example.cookbook.presentation.mainflow.MainActivity
-import com.example.cookbook.presentation.mainflow.RecipeFragment
-import com.example.cookbook.presentation.mainflow.createrecipe.CreateRecipeFragment
+import com.example.cookbook.presentation.mainflow.recipe.CreateRecipeFragment
+import com.example.cookbook.presentation.mainflow.recipe.RecipeFragment
 import com.example.cookbook.utils.ConnectivityManagerWrapper
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialSharedAxis

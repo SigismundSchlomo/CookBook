@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookbook.di.ViewModelFactory
 import com.example.cookbook.di.ViewModelKey
-import com.example.cookbook.presentation.mainflow.createrecipe.CreateRecipeViewModel
+import com.example.cookbook.presentation.mainflow.recipe.CreateRecipeViewModel
 import com.example.cookbook.presentation.mainflow.recipeslist.RecipeViewModel
 import dagger.Binds
 import dagger.Module
