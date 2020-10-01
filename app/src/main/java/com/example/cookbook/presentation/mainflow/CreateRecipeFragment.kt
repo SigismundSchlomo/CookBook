@@ -69,10 +69,17 @@ class CreateRecipeFragment : Fragment() {
             }
         }
 
+        ingredientListLabel.setEndIconOnClickListener {
+            //TODO: Show dialog fragment with ingredient creation
+        }
+
+        cookingStepsListLabel.setEndIconOnClickListener {
+            //TODO: Show dialog fragment with step creation
+        }
 
     }
 
-    private fun createRecipe() {
+    private fun createRecipe() { //TODO: rewrite to create recipe with ingredients and cooking steps
         val header = headerEditText.text.toString()
         val body = bodyEditText.text.toString()
         viewModel.createRecipe(header, body)

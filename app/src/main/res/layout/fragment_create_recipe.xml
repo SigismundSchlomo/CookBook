@@ -34,7 +34,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/headerEditText"
+                android:id="@+id/headerTextInput"
                 style="@style/RecipeHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,13 +42,14 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/headerEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/bodyEditText"
+                android:id="@+id/bodyTextInput"
                 style="@style/RecipeBody"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,6 +57,7 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/bodyEditText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
