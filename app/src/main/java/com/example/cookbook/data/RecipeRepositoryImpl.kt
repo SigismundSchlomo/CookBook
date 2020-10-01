@@ -23,11 +23,7 @@ class RecipeRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun createRecipe(header: String, body: String) {
-        val recipe = Recipe(
-            header = header,
-            body = body
-        )
+    override suspend fun createRecipe(recipe: Recipe) {
         network.saveRecipe(recipe)
     }
 
