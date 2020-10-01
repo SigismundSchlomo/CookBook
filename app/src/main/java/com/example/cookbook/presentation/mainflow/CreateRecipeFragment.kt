@@ -1,5 +1,6 @@
 package com.example.cookbook.presentation.mainflow
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.transition.TransitionInflater
@@ -10,7 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookbook.R
 import com.example.cookbook.di.injectViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.fragment_create_recipe.*
 import javax.inject.Inject
 
@@ -18,7 +21,7 @@ class CreateRecipeFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    lateinit var viewModel: RecipeViewModel
+    lateinit var viewModel: RecipeViewModel //TODO: Create own viewModel to the class
 
     companion object {
         fun newInstance(): CreateRecipeFragment {
@@ -70,7 +73,7 @@ class CreateRecipeFragment : Fragment() {
         }
 
         ingredientListLabel.setEndIconOnClickListener {
-            //TODO: Show dialog fragment with ingredient creation
+            pickIngredient()
         }
 
         cookingStepsListLabel.setEndIconOnClickListener {
@@ -91,6 +94,29 @@ class CreateRecipeFragment : Fragment() {
 
     private fun showSnackbar(message: String) {
         Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show()
+    }
+
+    @SuppressLint("InflateParams")
+    private fun pickIngredient() {
+        val dialogView =
+            LayoutInflater.from(requireContext()).inflate(R.layout.create_ingredient_dialog, null)
+        MaterialAlertDialogBuilder(requireContext()).apply {
+            setTitle("New Recipe")
+            setView(dialogView)
+            setPositiveButton(android.R.string.ok) { _, _ ->
+                val nameInput =
+                    dialogView.findViewById<TextInputEditText>(R.id.IngredientNameEditText)
+                val name = nameInput.text.toString()
+                val amountInput =
+                    dialogView.findViewById<TextInputEditText>(R.id.IngredientAmountEditText)
+                val amount = amountInput.text.toString()
+                //TODO: Add method to viewModel to create ingredient and store it
+            }
+            setNegativeButton(android.R.string.cancel) { dialog, _ ->
+                dialog.cancel()
+            }
+            show()
+        }
     }
 
 }
