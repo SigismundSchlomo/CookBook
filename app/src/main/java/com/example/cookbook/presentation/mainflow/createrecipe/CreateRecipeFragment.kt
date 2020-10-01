@@ -85,7 +85,7 @@ class CreateRecipeFragment : Fragment() {
 
     }
 
-    private fun createRecipe() { //TODO: rewrite to create recipe with ingredients and cooking steps
+    private fun createRecipe() {
         val header = headerEditText.text.toString()
         val body = bodyEditText.text.toString()
         viewModel.createRecipe(header, body)
@@ -113,7 +113,7 @@ class CreateRecipeFragment : Fragment() {
                 val amountInput =
                     dialogView.findViewById<TextInputEditText>(R.id.ingredientAmountEditText)
                 val amount = amountInput.text.toString()
-                //TODO: Add method to viewModel to create ingredient and store it
+                viewModel.createIngredient(name, amount)
             }
             setNegativeButton(android.R.string.cancel) { dialog, _ ->
                 dialog.cancel()
@@ -133,7 +133,7 @@ class CreateRecipeFragment : Fragment() {
                 val descriptionInput =
                     dialogView.findViewById<TextInputEditText>(R.id.descriptionEditText)
                 val description = descriptionInput.text.toString()
-                //TODO: Create method int viewModel to create step and save it
+                viewModel.createCookingStep(description)
             }
             setNegativeButton(android.R.string.cancel) { dialog, _ ->
                 dialog.cancel()
