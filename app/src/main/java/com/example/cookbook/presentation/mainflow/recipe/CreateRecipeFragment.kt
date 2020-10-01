@@ -85,6 +85,10 @@ class CreateRecipeFragment : Fragment() {
                         navigateBack()
                         true
                     }
+                    R.id.close -> {
+                        navigateBack()
+                        true
+                    }
                     else -> false
                 }
             }
