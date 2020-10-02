@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -15,9 +16,9 @@ import com.example.cookbook.di.injectViewModel
 import com.example.cookbook.domain.models.Recipe
 import com.example.cookbook.presentation.ErrorMessage
 import com.example.cookbook.presentation.mainflow.MainActivity
+import com.example.cookbook.presentation.mainflow.recipe.RecipeFragment
 import com.example.cookbook.utils.ConnectivityManagerWrapper
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.transition.MaterialSharedAxis
 import kotlinx.android.synthetic.main.fragment_recipes_list.*
 import javax.inject.Inject
 
@@ -25,7 +26,7 @@ class RecipeListFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    lateinit var viewModel: RecipeViewModel
+    private lateinit var viewModel: RecipeViewModel
 
     @Inject
     lateinit var connectivityManagerWrapper: ConnectivityManagerWrapper
@@ -47,11 +48,6 @@ class RecipeListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
-        exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
-        enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
-        returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
-
     }
 
     override fun onCreateView(
@@ -67,9 +63,9 @@ class RecipeListFragment : Fragment() {
 
         viewModel.loadRecipes()
 
-//        recipeAdapter.listener = { recipe ->
-//            navigateToRecipeFragment(recipe)
-//        }
+        recipeAdapter.listener = { recipe ->
+            navigateToRecipeFragment(recipe)
+        }
 
         recipeListView.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -78,24 +74,6 @@ class RecipeListFragment : Fragment() {
 
         val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(this::deleteRecipe))
         itemTouchHelper.attachToRecyclerView(recipeListView)
-
-        mainAppBar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.logout -> {
-                    viewModel.logout()
-                    (requireActivity() as MainActivity).moveToAuthActivity()
-                    true
-                }
-                else -> false
-            }
-        }
-//
-//        addRecipeButton.setOnClickListener {
-//            activity?.supportFragmentManager?.commit {
-//                addToBackStack(null)
-//                replace(R.id.main_fragment_container, CreateRecipeFragment.newInstance())
-//            }
-//        }
 
         refreshLayout.setOnRefreshListener {
             viewModel.refreshRecipes()
@@ -129,12 +107,12 @@ class RecipeListFragment : Fragment() {
         viewModel.deleteRecipe(recipe)
         recipeAdapter.removeAt(position)
     }
-//
-//    private fun navigateToRecipeFragment(recipe: Recipe) {
-//        activity?.supportFragmentManager?.commit {
-//            addToBackStack(null)
-//            replace(R.id.main_fragment_container, RecipeFragment.newInstance(recipe))
-//        }
-//    }
+
+    private fun navigateToRecipeFragment(recipe: Recipe) {
+        activity?.supportFragmentManager?.commit {
+            addToBackStack(null)
+            replace(R.id.mainFragmentContainer, RecipeFragment.newInstance(recipe))
+        }
+    }
 
 }

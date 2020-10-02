@@ -50,10 +50,6 @@ class RecipeViewModel @Inject constructor(
         }
     }
 
-    fun logout() {
-        interactor.logoutUser()
-        Timber.d("Successfully logout")
-    }
 
     private fun loadFromNetwork() {
         viewModelScope.launch {
