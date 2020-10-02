@@ -4,7 +4,7 @@ import android.content.Context
 import com.example.cookbook.di.ConnectivityModule
 import com.example.cookbook.di.UserModule
 import com.example.cookbook.presentation.mainflow.recipe.CreateRecipeFragment
-import com.example.cookbook.presentation.mainflow.recipeslist.ListFragment
+import com.example.cookbook.presentation.mainflow.recipeslist.RecipeListFragment
 import dagger.BindsInstance
 import dagger.Component
 
@@ -28,7 +28,7 @@ interface MainFlowComponent {
         ): MainFlowComponent
     }
 
-    fun inject(fragment: ListFragment)
+    fun inject(fragment: RecipeListFragment)
     fun inject(fragment: CreateRecipeFragment)
 
 }

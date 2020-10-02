@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -16,15 +15,13 @@ import com.example.cookbook.di.injectViewModel
 import com.example.cookbook.domain.models.Recipe
 import com.example.cookbook.presentation.ErrorMessage
 import com.example.cookbook.presentation.mainflow.MainActivity
-import com.example.cookbook.presentation.mainflow.recipe.CreateRecipeFragment
-import com.example.cookbook.presentation.mainflow.recipe.RecipeFragment
 import com.example.cookbook.utils.ConnectivityManagerWrapper
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialSharedAxis
 import kotlinx.android.synthetic.main.fragment_recipes_list.*
 import javax.inject.Inject
 
-class ListFragment : Fragment() {
+class RecipeListFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -36,8 +33,8 @@ class ListFragment : Fragment() {
     private val recipeAdapter = RecipeListAdapter()
 
     companion object {
-        fun newInstance(): ListFragment {
-            return ListFragment()
+        fun newInstance(): RecipeListFragment {
+            return RecipeListFragment()
         }
     }
 
@@ -70,9 +67,9 @@ class ListFragment : Fragment() {
 
         viewModel.loadRecipes()
 
-        recipeAdapter.listener = { recipe ->
-            navigateToRecipeFragment(recipe)
-        }
+//        recipeAdapter.listener = { recipe ->
+//            navigateToRecipeFragment(recipe)
+//        }
 
         recipeListView.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -92,13 +89,13 @@ class ListFragment : Fragment() {
                 else -> false
             }
         }
-
-        addRecipeButton.setOnClickListener {
-            activity?.supportFragmentManager?.commit {
-                addToBackStack(null)
-                replace(R.id.main_fragment_container, CreateRecipeFragment.newInstance())
-            }
-        }
+//
+//        addRecipeButton.setOnClickListener {
+//            activity?.supportFragmentManager?.commit {
+//                addToBackStack(null)
+//                replace(R.id.main_fragment_container, CreateRecipeFragment.newInstance())
+//            }
+//        }
 
         refreshLayout.setOnRefreshListener {
             viewModel.refreshRecipes()
@@ -132,12 +129,12 @@ class ListFragment : Fragment() {
         viewModel.deleteRecipe(recipe)
         recipeAdapter.removeAt(position)
     }
-
-    private fun navigateToRecipeFragment(recipe: Recipe) {
-        activity?.supportFragmentManager?.commit {
-            addToBackStack(null)
-            replace(R.id.main_fragment_container, RecipeFragment.newInstance(recipe))
-        }
-    }
+//
+//    private fun navigateToRecipeFragment(recipe: Recipe) {
+//        activity?.supportFragmentManager?.commit {
+//            addToBackStack(null)
+//            replace(R.id.main_fragment_container, RecipeFragment.newInstance(recipe))
+//        }
+//    }
 
 }
