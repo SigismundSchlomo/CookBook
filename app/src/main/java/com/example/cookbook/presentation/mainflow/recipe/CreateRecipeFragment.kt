@@ -17,7 +17,6 @@ import com.example.cookbook.domain.models.Ingredient
 import com.example.cookbook.presentation.mainflow.MainActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.transition.MaterialSharedAxis
 import kotlinx.android.synthetic.main.fragment_create_recipe.*
 import javax.inject.Inject
 
@@ -25,7 +24,7 @@ class CreateRecipeFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    lateinit var viewModel: CreateRecipeViewModel
+    private lateinit var viewModel: CreateRecipeViewModel
 
     companion object {
         fun newInstance(): CreateRecipeFragment {
@@ -41,11 +40,6 @@ class CreateRecipeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
-        exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
-        enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
-        returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
 
     }
 
@@ -123,7 +117,7 @@ class CreateRecipeFragment : Fragment() {
     }
 
     private fun navigateBack() {
-        activity?.supportFragmentManager?.popBackStack()
+        (activity as MainActivity).onBackPressed()
     }
 
     @SuppressLint("InflateParams")

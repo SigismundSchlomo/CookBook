@@ -34,6 +34,8 @@
     <string name="ingredient_amount_hint">How much?</string>
     <string name="description_input_label">What should be done?</string>
     <string name="close_menu_label">close</string>
+    <string name="recipes_tab_label">Recipes</string>
+    <string name="shoppingList_tab_label">Shopping</string>
 
 
 </resources>

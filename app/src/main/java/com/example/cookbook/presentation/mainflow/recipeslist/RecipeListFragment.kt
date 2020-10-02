@@ -16,19 +16,17 @@ import com.example.cookbook.di.injectViewModel
 import com.example.cookbook.domain.models.Recipe
 import com.example.cookbook.presentation.ErrorMessage
 import com.example.cookbook.presentation.mainflow.MainActivity
-import com.example.cookbook.presentation.mainflow.recipe.CreateRecipeFragment
 import com.example.cookbook.presentation.mainflow.recipe.RecipeFragment
 import com.example.cookbook.utils.ConnectivityManagerWrapper
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.transition.MaterialSharedAxis
 import kotlinx.android.synthetic.main.fragment_recipes_list.*
 import javax.inject.Inject
 
-class ListFragment : Fragment() {
+class RecipeListFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    lateinit var viewModel: RecipeViewModel
+    private lateinit var viewModel: RecipeViewModel
 
     @Inject
     lateinit var connectivityManagerWrapper: ConnectivityManagerWrapper
@@ -36,8 +34,8 @@ class ListFragment : Fragment() {
     private val recipeAdapter = RecipeListAdapter()
 
     companion object {
-        fun newInstance(): ListFragment {
-            return ListFragment()
+        fun newInstance(): RecipeListFragment {
+            return RecipeListFragment()
         }
     }
 
@@ -49,11 +47,6 @@ class ListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
-        exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
-        enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
-        returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
 
     }
 
@@ -81,24 +74,6 @@ class ListFragment : Fragment() {
 
         val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(this::deleteRecipe))
         itemTouchHelper.attachToRecyclerView(recipeListView)
-
-        mainAppBar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.logout -> {
-                    viewModel.logout()
-                    (requireActivity() as MainActivity).moveToAuthActivity()
-                    true
-                }
-                else -> false
-            }
-        }
-
-        addRecipeButton.setOnClickListener {
-            activity?.supportFragmentManager?.commit {
-                addToBackStack(null)
-                replace(R.id.main_fragment_container, CreateRecipeFragment.newInstance())
-            }
-        }
 
         refreshLayout.setOnRefreshListener {
             viewModel.refreshRecipes()
@@ -136,7 +111,7 @@ class ListFragment : Fragment() {
     private fun navigateToRecipeFragment(recipe: Recipe) {
         activity?.supportFragmentManager?.commit {
             addToBackStack(null)
-            replace(R.id.main_fragment_container, RecipeFragment.newInstance(recipe))
+            replace(R.id.mainFragmentContainer, RecipeFragment.newInstance(recipe))
         }
     }
 
