@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookbook.R
+import com.example.cookbook.di.injectViewModel
 import com.example.cookbook.di.mainflowcomponent.DaggerMainFlowComponent
 import com.example.cookbook.di.mainflowcomponent.MainFlowComponent
 import com.example.cookbook.presentation.authflow.AuthActivity
@@ -27,7 +28,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        mainFlowComponent.inject(this)
         super.onCreate(savedInstanceState)
+        viewModel = injectViewModel(viewModelFactory)
         setContentView(R.layout.activity_main)
         Timber.d("Main activity onCreate")
 

@@ -6,7 +6,7 @@ import com.example.cookbook.di.ViewModelFactory
 import com.example.cookbook.di.ViewModelKey
 import com.example.cookbook.presentation.mainflow.MainViewModel
 import com.example.cookbook.presentation.mainflow.recipe.CreateRecipeViewModel
-import com.example.cookbook.presentation.mainflow.recipeslist.RecipeViewModel
+import com.example.cookbook.presentation.mainflow.recipeslist.RecipeListViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -16,8 +16,8 @@ abstract class MainModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(RecipeViewModel::class)
-    abstract fun recipeViewModel(viewModel: RecipeViewModel): ViewModel
+    @ViewModelKey(RecipeListViewModel::class)
+    abstract fun recipeViewModel(listViewModel: RecipeListViewModel): ViewModel
 
     @Binds
     @IntoMap

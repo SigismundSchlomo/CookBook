@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
-class RecipeViewModel @Inject constructor(
+class RecipeListViewModel @Inject constructor(
     private val connectivityManagerWrapper: ConnectivityManagerWrapper,
     private val interactor: RecipeInteractor
 ) : ViewModel() {
@@ -49,7 +49,6 @@ class RecipeViewModel @Inject constructor(
             }
         }
     }
-
 
     private fun loadFromNetwork() {
         viewModelScope.launch {
