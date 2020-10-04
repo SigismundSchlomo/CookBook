@@ -13,6 +13,7 @@
             style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:menu="@menu/recipe_menu"
             android:backgroundTint="@color/colorPrimary"
             app:titleTextColor="@color/colorTextLight" />
 
@@ -89,14 +90,14 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/ingredientContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:visibility="gone">
 
-            </LinearLayout>
+            </androidx.recyclerview.widget.RecyclerView>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/cookingStepsListLabel"
@@ -118,14 +119,14 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/cookingStepsContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:visibility="gone">
 
-            </LinearLayout>
+            </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
 

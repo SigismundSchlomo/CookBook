@@ -26,7 +26,7 @@ class RecipeListFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var viewModel: RecipeViewModel
+    private lateinit var listViewModel: RecipeListViewModel
 
     @Inject
     lateinit var connectivityManagerWrapper: ConnectivityManagerWrapper
@@ -42,7 +42,7 @@ class RecipeListFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (requireActivity() as MainActivity).mainFlowComponent.inject(this)
-        viewModel = injectViewModel(viewModelFactory)
+        listViewModel = injectViewModel(viewModelFactory)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,9 +61,10 @@ class RecipeListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.loadRecipes()
+        listViewModel.loadRecipes()
 
         recipeAdapter.listener = { recipe ->
+            (activity as MainActivity).hideFragmentContainer()
             navigateToRecipeFragment(recipe)
         }
 
@@ -76,16 +77,16 @@ class RecipeListFragment : Fragment() {
         itemTouchHelper.attachToRecyclerView(recipeListView)
 
         refreshLayout.setOnRefreshListener {
-            viewModel.refreshRecipes()
+            listViewModel.refreshRecipes()
         }
 
-        viewModel.recipesLiveData.observe(viewLifecycleOwner,
+        listViewModel.recipesLiveData.observe(viewLifecycleOwner,
             Observer<List<Recipe>> { list ->
                 recipeAdapter.items = (list as MutableList<Recipe>)
                 refreshLayout.isRefreshing = false
             })
 
-        viewModel.errorMessage.observe(viewLifecycleOwner,
+        listViewModel.errorMessage.observe(viewLifecycleOwner,
             Observer<ErrorMessage> { errorMessage ->
                 val messageResource = when (errorMessage) {
                     ErrorMessage.SERVICE_UNAVAILABLE -> R.string.service_unavailable
@@ -104,7 +105,7 @@ class RecipeListFragment : Fragment() {
 
     private fun deleteRecipe(position: Int) {
         val recipe = recipeAdapter.items[position]
-        viewModel.deleteRecipe(recipe)
+        listViewModel.deleteRecipe(recipe)
         recipeAdapter.removeAt(position)
     }
 

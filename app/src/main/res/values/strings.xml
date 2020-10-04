@@ -36,6 +36,7 @@
     <string name="close_menu_label">close</string>
     <string name="recipes_tab_label">Recipes</string>
     <string name="shoppingList_tab_label">Shopping</string>
+    <string name="edit_menu_label">edit</string>
 
 
 </resources>
